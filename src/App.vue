@@ -10,10 +10,7 @@ import Header from './components/Header'
 import Main from './components/Main'
 
 export default {
-  components: {
-    Header,
-    Main
-  }
+  components: { Header, Main }
 }
 </script>
 
