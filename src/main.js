@@ -1,10 +1,13 @@
 import Vue from 'vue'
-import SvgSprite from 'vue-svg-sprite'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import VueTheMask from 'vue-the-mask'
+// import SvgSprite from 'vue-svg-sprite'
+
 // Vue.use(SvgSprite)
+Vue.use(VueTheMask)
 
 Vue.config.productionTip = false
 

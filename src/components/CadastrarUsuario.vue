@@ -10,12 +10,13 @@
 
                     <div class="content__form__input-container--item" id="input--1-of-4">
                         <label for="name-input" class="input__text--label">CPF</label>
-                        <input type="text" id="name-input" placeholder="" class="input__text--name">
+                        <input type="text" id="name-input" placeholder="" 
+                        class="input__text--name" v-mask="'###.###.###-##'">
                     </div>
 
                     <div class="content__form__input-container--item" id="input--1-of-4">
                         <label for="name-input" class="input__text--label">Telefone para contato</label>
-                        <input type="text" id="name-input bar--name" placeholder="" class="input__text--name">
+                        <input type="text" id="name-input bar--name" placeholder="" class="input__text--name" v-mask="'(##) #####-####'">
                     </div>
 
                     <div class="content__form__input-container--item" id="input--1-of-4">
@@ -30,7 +31,8 @@
 
                     <div class="content__form__input-container--item" id="input--1-of-4">
                         <label for="name-input" class="input__text--label">Matricula</label>
-                        <input type="text" id="name-input bar--name" placeholder="" class="input__text--name">
+                        <input type="text" id="name-input bar--name" placeholder="" 
+                        class="input__text--name" v-mask="'######'">
                     </div>
 
                     <div class="content__form__input-container--item" id="input--1-of-4">
@@ -55,8 +57,18 @@
 </template>
 
 <script>
-export default {
+import { TheMask } from 'vue-the-mask'
 
+export default {
+    components: { TheMask },
+    data(){
+        return {
+            cpf: ''
+        }
+    },
+    watch: {
+
+        }
 }
 </script>
 
@@ -145,9 +157,9 @@ export default {
 }
 
 #input {
-    &--1-of-4 {
+    /*&--1-of-4 {
         
-    }
+    }*/
 
     &--3-of-4 {
         grid-column: 1 / 4;
