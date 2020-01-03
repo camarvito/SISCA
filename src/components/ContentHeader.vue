@@ -2,7 +2,7 @@
   <div class="content__header">
         <div class="content__header--title">Cadastrar cliente</div>
             <div class="content__header--options">
-                <svg class="content__header--options--icon"><use xlink:href="@/assets/sprites.svg#refresh-button"></use></svg>
+                <svg class="content__header--options--icon" @click="setAnimation" :class="{ animation__rotate: isRotating }"><use xlink:href="@/assets/sprites.svg#refresh-button"></use></svg>
                 <svg class="content__header--options--icon"><use xlink:href="@/assets/sprites.svg#back-arrow"></use></svg>
             </div>
         </div>
@@ -10,7 +10,19 @@
 
 <script>
 export default {
-
+    data(){
+        return {
+            isRotating: false
+        }
+    },
+    methods: {
+        setAnimation(){ /* Como não conseguir animar o click usando apenas o CSS programei uma função simples */
+            this.isRotating = true
+            setTimeout(() => {
+                this.isRotating = false
+            }, 1000)
+        }
+    }
 }
 </script>
 
@@ -38,7 +50,30 @@ export default {
             width: 2.6rem;
             fill: #8a8a8a;
             margin: 1rem;
+            cursor: pointer;
+
+            &:hover {
+                fill: #0abde3;
+            }
         }
     }
 }
+
+
+/* Animations */
+
+.animation__rotate {
+    animation: rotate;
+    animation-duration: 1s;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 </style>
