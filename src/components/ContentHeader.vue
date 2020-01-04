@@ -2,7 +2,7 @@
   <div class="content__header">
         <div class="content__header--title">Cadastrar cliente</div>
             <div class="content__header--options">
-                <svg class="content__header--options--icon" @click="setAnimation" :class="{ animation__rotate: isRotating }"><use xlink:href="@/assets/sprites.svg#refresh-button"></use></svg>
+                <svg class="content__header--options--icon" @click="setAnimation(); clear();" :class="{ animation__rotate: isRotating }"><use xlink:href="@/assets/sprites.svg#refresh-button"></use></svg>
                 <svg class="content__header--options--icon"><use xlink:href="@/assets/sprites.svg#back-arrow"></use></svg>
             </div>
         </div>
@@ -21,6 +21,9 @@ export default {
             setTimeout(() => {
                 this.isRotating = false
             }, 1000)
+        },
+        clear(){ // Função que emite o evento para limpar os dados do formulário
+            this.$emit('clear')
         }
     }
 }
@@ -64,7 +67,7 @@ export default {
 
 .animation__rotate {
     animation: rotate;
-    animation-duration: 1s;
+    animation-duration: .5s;
 }
 
 @keyframes rotate {

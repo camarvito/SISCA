@@ -1,16 +1,21 @@
 <template>
     <div class="content">
-        <contentHeader />
-        <cadastrarUsuario />
+        <contentHeader @clear="clearForm" />
+        <CadastrarUsuario ref="CadastrarUsuario" />
     </div>
 </template>
 
 <script>
 import contentHeader from './ContentHeader'
-import cadastrarUsuario from './CadastrarUsuario'
+import CadastrarUsuario from './CadastrarUsuario'
 
 export default {
-    components: { contentHeader, cadastrarUsuario }
+    components: { contentHeader, CadastrarUsuario },
+    methods: {
+        clearForm(){
+            this.$refs.CadastrarUsuario.clear()
+        }
+    }
 }
 </script>
 
