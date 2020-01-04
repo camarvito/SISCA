@@ -32,21 +32,14 @@
 
                     <div class="content__form__input-container--item input--1-of-4">
                         <label for="name-input" class="input__text--label">Curso</label>
-                        <select class="input__drop-down">
-                            <option value="0">Selecione</option>
-                            <option value="1">Ciência da Computação</option>
-                            <option value="2">Design Digital</option>
-                            <option value="3">Engenharia da Computação</option>
-                            <option value="4">Engenharia de Software</option>
-                            <option value="5">Redes de Computadores</option>
-                            <option value="6">Sistemas de Informação</option>
+                        <select class="input__drop-down" v-model="user.course">
+                            <option v-for="course in user.courses" :key="course.code" :value="course.name">{{ course.name }}</option>
                         </select>
                     </div>
 
                     <div class="content__form__input-container--item input--4-of-4">
-                        <input type="button" class="input__big-button" value="Confirmar cadastro">
+                        <input type="button" class="input__big-button" value="Confirmar cadastro" @click="send">
                     </div>
-
                 </div>
             </div>
 </template>
@@ -77,7 +70,15 @@ export default {
                 registration: '',
                 isRegistrationInitialized: false,
                 isRegistrationValid: false,
-                course: ''
+                course: 'Ciência da Computação',
+                courses: [
+                    { code: 1, name: 'Ciência da Computação' },
+                    { code: 2, name: 'Design Digital'},
+                    { code: 3, name: 'Engenharia da Computação'},
+                    { code: 4, name: 'Engenharia de Software'},
+                    { code: 5, name: 'Redes de Computadores'},
+                    { code: 6, name: 'Sistemas de Informação'} 
+                ]
             },
         }
     },
@@ -112,13 +113,29 @@ export default {
                 phone: '',
                 isPhoneInitialized: false,
                 isPhoneValid: false,
-                type: '',
+                type: 'Aluno',
+                types: [
+                    { code: 1, name: 'Aluno' },
+                    { code: 2, name: 'Servidor'},
+                    { code: 3, name: 'Outro'} 
+                ],
                 registration: '',
                 isRegistrationInitialized: false,
                 isRegistrationValid: false,
-                course: ''
+                course: 'Ciência da Computação',
+                courses: [
+                    { code: 1, name: 'Ciência da Computação' },
+                    { code: 2, name: 'Design Digital'},
+                    { code: 3, name: 'Engenharia da Computação'},
+                    { code: 4, name: 'Engenharia de Software'},
+                    { code: 5, name: 'Redes de Computadores'},
+                    { code: 6, name: 'Sistemas de Informação'} 
+                ]
             }
         },
+        send(){
+            console.log(this.user)
+        }
     },
     watch: {
 
