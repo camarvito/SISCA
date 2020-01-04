@@ -4,35 +4,30 @@
                 <div class="content__form__input-container">
 
                     <div class="content__form__input-container--item input--3-of-4">
-                        <label for="name-input" class="input__text--label" :class="{ 'input__correct--text': userValidation.nome }">Nome Completo</label>
-                        <input type="text" placeholder="Ex. Victor Camargo Oliveira" class="input__text--type" :class="{ 'input__correct': userValidation.nome , 'input__correct--text': userValidation.nome }" v-model.trim="usuario.nome" @blur="checkForm(usuario.nome)">
+                        <label for="name-input" class="input__text--label" :class="{ 'input__correct--text': user.isNameValid, 'input__wrong--text': user.isNameInitialized }">Nome Completo</label>
+                        <input type="text" placeholder="Ex. Victor Camargo Oliveira" class="input__text--type" :class="{ 'input__correct': user.isNameValid , 'input__correct--text': user.isNameValid, 'input__wrong': user.isNameInitialized, 'input__wrong--text': user.isNameInitialized }" v-model.trim="user.name" @blur="checkForm(user.name)">
                     </div>
 
                     <div class="content__form__input-container--item input--1-of-4">
-                        <label for="name-input" class="input__text--label" :class="{ 'input__correct--text': userValidation.cpf }">CPF</label> 
-                        <input type="text" placeholder="123.456.789-00" 
-                        class="input__text--type" :class="{ 'input__correct': userValidation.cpf , 'input__correct--text': userValidation.cpf }" v-mask="'###.###.###-##'" v-model.trim="usuario.cpf" @blur="checkForm(usuario.cpf)">
+                        <label for="name-input" class="input__text--label" :class="{ 'input__correct--text': user.isCpfValid, 'input__wrong--text': user.isCpfInitialized }">CPF</label> 
+                        <input type="text" placeholder="123.456.789-00" class="input__text--type" :class="{ 'input__correct': user.isCpfValid , 'input__correct--text': user.isCpfValid , 'input__wrong': user.isCpfInitialized, 'input__wrong--text': user.isCpfInitialized }" v-mask="'###.###.###-##'" v-model.trim="user.cpf" @blur="checkForm(user.cpf)">
                     </div>
 
                     <div class="content__form__input-container--item input--1-of-4">
-                        <label for="name-input" class="input__text--label">Telefone para contato</label>
-                        <input type="text" placeholder="(88) 00000-0000" class="input__text--type" v-mask="'(##) #####-####'" v-model.trim="usuario.telefone">
+                        <label for="name-input" class="input__text--label" :class="{ 'input__correct--text': user.isPhoneValid, 'input__wrong--text': user.isPhoneInitialized }">Telefone para contato</label>
+                        <input type="text" placeholder="(88) 00000-0000" class="input__text--type" :class="{ 'input__correct': user.isPhoneValid , 'input__correct--text': user.isPhoneValid , 'input__wrong': user.isPhoneInitialized, 'input__wrong--text': user.isPhoneInitialized }" v-mask="'(##) #####-####'" v-model.trim="user.phone" @blur="checkForm(user.phone)">
                     </div>
 
                     <div class="content__form__input-container--item input--1-of-4">
                         <label for="name-input" class="input__text--label">Tipo</label>
-                        <select class="input__drop-down">
-                            <option value="0">Selecione</option>
-                            <option value="1">Aluno</option>
-                            <option value="2">Servidor</option>
-                            <option value="3">Outro</option>
+                        <select class="input__drop-down" v-model="user.type">
+                            <option v-for="type in user.types" :key="type.code" :value="type.name">{{ type.name }}</option>
                         </select>
                     </div>
-
+            
                     <div class="content__form__input-container--item input--1-of-4">
-                        <label for="name-input" class="input__text--label">Matricula</label>
-                        <input type="text" placeholder="123456" 
-                        class="input__text--type" v-mask="'######'">
+                        <label for="name-input" class="input__text--label" :class="{ 'input__correct--text': user.isRegistrationValid, 'input__wrong--text': user.isRegistrationInitialized }">Matricula</label>
+                        <input type="text" placeholder="123456" class="input__text--type" :class="{ 'input__correct': user.isRegistrationValid , 'input__correct--text': user.isRegistrationValid , 'input__wrong': user.isRegistrationInitialized, 'input__wrong--text': user.isRegistrationInitialized }" v-mask="'######'" v-model.trim="user.registration" @blur="checkForm(user.registration)">
                     </div>
 
                     <div class="content__form__input-container--item input--1-of-4">
@@ -63,44 +58,67 @@ export default {
     components: { TheMask },
     data(){
         return {
-            usuario: {
-                nome: '',
+            user: {
+                name: '',
+                isNameInitialized: false,
+                isNameValid: false,
                 cpf: '',
-                telefone: '',
-                tipo: '',
-                matricula: '',
-                curso: ''
+                isCpfInitialized: false,
+                isCpfValid: false,
+                phone: '',
+                isPhoneInitialized: false,
+                isPhoneValid: false,
+                type: 'Aluno',
+                types: [
+                    { code: 1, name: 'Aluno' },
+                    { code: 2, name: 'Servidor'},
+                    { code: 3, name: 'Outro'} 
+                ],
+                registration: '',
+                isRegistrationInitialized: false,
+                isRegistrationValid: false,
+                course: ''
             },
-            userValidation: {
-                nome: false,
-                cpf: false,
-                telefone: false,
-                tipo: false,
-                matricula: false,
-                curso: false
-            }
         }
     },
     methods: {
         checkForm(attr){
-            if (attr === this.usuario.nome){
+            if (attr === this.user.name){
                 const nameRegex = /\w+\s\w+/i
-                this.userValidation.nome = this.usuario.nome.match(nameRegex) ? true : false
-            } else if (attr === this.usuario.cpf) {
+                this.user.isNameInitialized = true
+                this.user.isNameValid = this.user.name.match(nameRegex) ? true : false
+            } else if (attr === this.user.cpf) {
                 const cpfRegex = /\d{3}\.\d{3}\.\d{3}\-\d{2}/
-                this.userValidation.cpf = this.usuario.cpf.match(cpfRegex) ? true : false
+                this.user.isCpfInitialized = true
+                this.user.isCpfValid = this.user.cpf.match(cpfRegex) ? true : false
+            } else if (attr === this.user.phone) {
+                const phoneRegex = /\(\d{2}\)\s\d{5}\-\d{4}/
+                this.user.isPhoneInitialized = true
+                this.user.isPhoneValid = this.user.phone.match(phoneRegex) ? true : false
+            } else if (attr === this.user.registration) {
+                const registrationRegex = /\d{6}/
+                this.user.isRegistrationInitialized = true
+                this.user.isRegistrationValid = this.user.registration.match(registrationRegex) ? true : false
             }
         },
         clear(){
-            this.usuario = {
-                nome: '',
+            this.user = {
+                name: '',
+                isNameInitialized: false,
+                isNameValid: false,
                 cpf: '',
-                telefone: '',
-                tipo: '',
-                matricula: '',
-                curso: ''
+                isCpfInitialized: false,
+                isCpfValid: false,
+                phone: '',
+                isPhoneInitialized: false,
+                isPhoneValid: false,
+                type: '',
+                registration: '',
+                isRegistrationInitialized: false,
+                isRegistrationValid: false,
+                course: ''
             }
-        }
+        },
     },
     watch: {
 
@@ -203,13 +221,22 @@ export default {
         border-radius: .4rem;
 
         padding: 1rem;
+        cursor: pointer;
     }
 
     &__correct {
-        outline: #A3CB38 auto 1px;
+        outline: #A3CB38 auto 1px !important;
 
         &--text {
-            color: rgb(118, 160, 2);
+            color: #76a002 !important;
+        }
+    }
+
+    &__wrong {
+        outline: #c0392b auto 1px;
+
+        &--text {
+            color: #e74c3c;
         }
     }
 }
