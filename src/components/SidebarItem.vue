@@ -1,6 +1,6 @@
 <template>
     <div>
-        <li class="sidebar__item" @click="active" :class="{'sidebar__item--selected': isActive}">
+        <router-link tag="li" class="sidebar__item" @click.native="active" :class="{'sidebar__item--selected': isActive}" :to="`/${path}`">
             <svg v-html="icon" class="sidebar__item--icon" :style="isActive ? {'fill' : '#000'} : {}"></svg>
 
             <span class="sidebar__item--name">{{ name }}</span>
@@ -8,7 +8,7 @@
             <svg v-if="subItems" :class="{'sidebar__item--arrow-active': isActive, 'sidebar__item--arrow': !isActive}">
                 <use xlink:href="@/assets/sprites.svg#arrow-point-to-right"></use>
             </svg>
-        </li>
+        </router-link>
         <ul v-if="subItems && isActive">
                 <li v-for="item in subItems" :key="item" class="sidebar__item__sub--li">{{ item }}</li>
         </ul>
@@ -32,6 +32,9 @@ export default {
         name: {
             type: String,
             required: true
+        },
+        path: {
+            type: String
         },
         icon: {
             type: String,
