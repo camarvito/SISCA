@@ -13,8 +13,8 @@ export default {
     data() {
         return {
             sidebarItems: [
-                { name: 'Home', icon: '<use xlink:href="/img/sprites.f40a5c91.svg#home-icon-silhouette"></use>', isSelected: true },
-                { name: 'Cadastrar cliente', icon: '<use xlink:href="/img/sprites.f40a5c91.svg#new-user"></use>', isSelected: false},
+                { name: 'Home', path: '/home', icon: '<use xlink:href="/img/sprites.f40a5c91.svg#home-icon-silhouette"></use>', isSelected: true },
+                { name: 'Cadastrar cliente', path: 'cadastrar-usuario', icon: '<use xlink:href="/img/sprites.f40a5c91.svg#new-user"></use>', isSelected: false},
                 { name: 'Pagar débitos', icon: '<use xlink:href="/img/sprites.f40a5c91.svg#give-money"></use>', isSelected: false },
                 { name: 'Gerencial', icon: '<use xlink:href="/img/sprites.f40a5c91.svg#line-chart"></use>', isSelected: false, subItems: ['Ver devedores', 'Relatório últimos 30 dias', 'Relatório completo']},
                 { name: 'Logs', icon: '<use xlink:href="/img/sprites.f40a5c91.svg#medical-notes-symbol-of-a-list-paper-on-a-clipboard"></use>', isSelected: false },
