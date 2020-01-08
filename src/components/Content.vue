@@ -1,45 +1,22 @@
 <template>
     <div class="content">
         <contentHeader @clear="clearForm" />
-        <button @click="woahVicky">AAA</button>
-        <hr>
-        <button @click="woahVicko">BBB</button>
-        <router-view />
+        <router-view ref="CadastrarUsuario" />
     </div>
 </template>
 
 <script>
-import firebase from 'firebase'
 import contentHeader from './ContentHeader'
 import CadastrarUsuario from './register-client/CadastrarUsuario'
-import SearchContainer from './table-client/SearchContainer'
+import TableClients from './table-client/TableClients'
 
 export default {
-    data(){
-        return {
-            carti: {
-                name: 'ana',
-                age: '32'
-            }
-        }
-    },
-    components: { contentHeader, CadastrarUsuario, SearchContainer },
+    components: { contentHeader, CadastrarUsuario, TableClients },
     methods: {
         clearForm(){
             this.$refs.CadastrarUsuario.clear()
-        },
-        woahVicky() {
-        firebase.database().ref('users').set({
-            username: 'Victor',
-            email: 'vic',
-            profile_picture : 'woah vicaay',
-            carti: ''
-    })},
-        woahVicko() {
-        firebase.database().ref('users').child('carti').push(this.carti)
-        console.log("lido2")
+        }
     }
-}
 }
 </script>
 

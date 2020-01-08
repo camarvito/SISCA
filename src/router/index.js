@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import SearchContainer from '../components/table-client/SearchContainer'
+import TableClients from '../components/table-client/TableClients'
 import CadastrarUsuario from '../components/register-client/CadastrarUsuario'
 
 Vue.use(VueRouter)
@@ -13,7 +13,7 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: SearchContainer
+    component: TableClients
   },{
     path: '/cadastrar-usuario',
     name: 'registryUser',

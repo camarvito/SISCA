@@ -3,7 +3,7 @@
         <div class="search__container">
             <input type="text" class="search__bar" placeholder="Digite o nome do cliente" />
         </div>
-        <span class="counter pull-right"></span>
+
         <div class="table__container">
             <table class="table__frame">
                 <thead>
@@ -12,6 +12,7 @@
                         <th class="table__head--header">Matricula</th>
                         <th class="table__head--header">CPF</th>
                         <th class="table__head--header">Telefone</th>
+                        <th class="table__head--header">Ações</th>
                     </tr>
                     <!-- <tr class="warning no-result">
                         <td colspan="4">
@@ -25,6 +26,18 @@
                         <td class="table__body--cell">Batata</td>
                         <td class="table__body--cell">Tomates</td>
                         <td class="table__body--cell">Legumes</td>
+                        <td class="table__body--cell">
+                            <button class="btn btn--exclude">
+                                <svg class="btn--icon">
+                                    <use xlink:href="@/assets/sprites.svg#trash"></use>
+                                </svg>
+                            </button>
+                            <button class="btn btn--edit">
+                                <svg class="btn--icon">
+                                    <use xlink:href="@/assets/sprites.svg#pencil-edit-button"></use>
+                                </svg>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -40,7 +53,6 @@ export default {
 
 <style lang="scss" scoped>
 .search {
-
     &__container {
         display: flex;
         box-sizing: border-box;
@@ -68,7 +80,6 @@ export default {
 }
 
 .table {
-
     &__container {
         padding: 2rem;
     }
@@ -103,7 +114,30 @@ export default {
             padding: 1rem;   
         }
     }
+}
 
+.btn {
+    display: inline-block;
+    border: 1px solid transparent;
+    padding: .7rem .7rem;
+    margin: 0 .5rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s;
+
+    &--icon {
+        height: 2rem;
+        width: 2rem;
+        fill: #FFF;
+    }
+
+    &--exclude {
+        background-color: #e74c3c;
+    }
+
+    &--edit {
+        background-color: #f1c40f;
+    }
 }
 
 

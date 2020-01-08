@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import SvgSprite from 'vue-svg-sprite'
 import firebase from 'firebase/app'
 
 import VueTheMask from 'vue-the-mask'
@@ -23,7 +24,7 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 
-// Vue.use(SvgSprite)
+Vue.use(SvgSprite)
 Vue.use(VueTheMask)
 
 Vue.config.productionTip = false

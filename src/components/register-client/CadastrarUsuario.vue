@@ -45,6 +45,9 @@
 </template>
 
 <script>
+import firebase from 'firebase/app';
+import 'firebase/database';
+
 import { TheMask } from 'vue-the-mask'
 
 export default {
@@ -134,7 +137,18 @@ export default {
             }
         },
         send(){
-            console.log(this.user)
+            let newUser = {
+                name: this.user.name,
+                cpf: this.user.cpf,
+                phone: this.user.phone,
+                type: this.user.type,
+                registration: this.user.registration,
+                course: this.user.course,
+                debits: ''
+            }
+
+            const db = firebase.database()
+            db.ref('users').push(newUser)
         }
     },
     watch: {
