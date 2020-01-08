@@ -88,6 +88,7 @@ export default {
     line-height: 1.5;
     border-radius: .25rem;
     transition: color .15s;
+    cursor: pointer;
 
     &--icon {
         height: 2rem;
