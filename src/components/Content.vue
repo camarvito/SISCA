@@ -26,6 +26,7 @@ export default {
     grid-column: 2;
     background-color: #FFF;
     margin: 2rem; /* Corrigir isso depois com a propriedade gap*/
-    height: 40rem;
+    height: auto;
+    display: inline-table;
 }
 </style>
