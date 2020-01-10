@@ -1,13 +1,14 @@
 <template>
     <div>
         <div class="search__container">
-            <input type="text" class="search__bar" placeholder="Digite o nome do cliente" />
+            <input type="text" class="search__bar" placeholder="Digite o nome do cliente" v-model="inputName" @input="filterUsers" />
         </div>
 
         <div class="table__container">
             <table class="table__frame">
                 <TableClientsHeader />
-                <TableClientsRow v-for="user in users" :key="user.registration" :name="user.name" :registration="user.registration" :cpf="user.cpf"/>
+                <TableClientsRowErr v-if="!filteredUsers[0]" />
+                <TableClientsRow v-for="user in filteredUsers" :key="user.registration" :name="user.name" :registration="user.registration" :cpf="user.cpf" :id="user.key"/>
             </table>
         </div>
     </div>
@@ -19,22 +20,34 @@ import 'firebase/database';
 
 import TableClientsHeader from './TableClientsHeader'
 import TableClientsRow from './TableClientsRow'
+import TableClientsRowErr from './TableClientsRowErr'
 
 export default {
-    components: { TableClientsHeader, TableClientsRow },
+    components: { TableClientsHeader, TableClientsRow, TableClientsRowErr },
     data() {
         return {
-            users: []
+            inputName: '',
+            users: [],
+            filteredUsers: []
         }
     },
     methods: {
-        
+        filterUsers(){
+            this.filteredUsers = this.users.filter(user => {
+                // if (!this.inputName) {
+                //     return false
+                // } else {
+                    return user.name.toLowerCase().startsWith(this.inputName.toLowerCase())
+                // }
+            })
+        }
     },
     mounted() { /* Ao montar o componente, pega do Firebase todos os usuarios existentes e os armazena na instancia */
         let db = firebase.database().ref('users')
         db.on('value', snapshot => {
             snapshot.forEach(childSnapshot => {
                 let user = childSnapshot.val()
+                user.key = childSnapshot.key /* Adiciona o atributo key, uma chave unica gerada pelo firebase */
                 this.users.push(user)
             })
         })

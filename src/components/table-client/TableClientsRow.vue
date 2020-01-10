@@ -1,15 +1,9 @@
 <template>
 <tbody>
-    <!-- <tr class="warning no-result">
-            <td colspan="4">
-                <i class="fa fa-warning"></i> No result
-            </td>
-    </tr> -->
-
   <tr class="table__body--row">
-    <td class="table__body--cell">{{ name }}</td>
-    <td class="table__body--cell">{{ registration }}</td>
-    <td class="table__body--cell">{{ cpf }}</td>
+    <router-link tag="td" class="table__body--cell" :to="`users/${id}`">{{ name }}</router-link>
+    <router-link tag="td" class="table__body--cell" :to="`users/${id}`">{{ registration }}</router-link>
+    <router-link tag="td" class="table__body--cell" :to="`users/${id}`">{{ cpf }}</router-link>
     <td class="table__body--cell">
         <button class="btn btn--include">
             Cadastrar novo débito
@@ -18,7 +12,7 @@
     <td class="table__body--cell">
         <button class="btn btn--exclude">
             <svg class="btn--icon">
-                <use xlink:href="@/assets/sprites.svg#trash"></use>
+                <use xlink:href="@/assets/sprites.svg#bin"></use>
             </svg>
         </button>
         <button class="btn btn--edit">
@@ -32,28 +26,26 @@
 </template>
 
 <script>
-import firebase from 'firebase/app';
-import 'firebase/database';
-
 export default {
     props: {
+        id: {
+            type: String,
+            required: true
+        },
         name: {
-            type: String
+            type: String,
+            required: true
+        },
+        cpf: {
+            type: String,
+            required: true
         },
         registration: {
             type: String
         },
-        cpf: {
-            type: String
-        }
     },
     methods: {
-        // getData(){
-        //     let db = firebase.database().ref('users')
-        //     db.on('value', function(snapshot) {
-        //         console.log(snapshot.val())
-        //     })
-        // }
+
     }
 }
 </script>
@@ -91,21 +83,27 @@ export default {
     cursor: pointer;
 
     &--icon {
-        height: 2rem;
-        width: 2rem;
+        vertical-align: middle;
+        height: 1.6rem;
+        width: 1.6rem;
         fill: #FFF;
     }
 
     &--include {
         background-color: #2ecc71;
+        box-shadow: 0px 0px 2px .2px rgba(0,0,0,0.35);
     }
 
     &--exclude {
+        vertical-align: middle;
         background-color: #e74c3c;
+        box-shadow: 0px 0px 2px .2px rgba(0,0,0,0.35);
     }
 
     &--edit {
+        vertical-align: middle;
         background-color: #f1c40f;
+        box-shadow: 0px 0px 2px .2px rgba(0,0,0,0.35);
     }
 }
 </style>

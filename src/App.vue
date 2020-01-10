@@ -2,15 +2,17 @@
   <div id="app">
     <Header />
     <Main />
+    <Trademark />
   </div>
 </template>
 
 <script>
 import Header from './components/Header'
 import Main from './components/Main'
+import Trademark from './components/Trademark'
 
 export default {
-  components: { Header, Main }
+  components: { Header, Main, Trademark }
 }
 </script>
 

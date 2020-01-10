@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
             <ul>
-                <SidebarItem v-for="(item, index) in sidebarItems" :key="index" :name="item.name" :icon="item.icon" :subItems="item.subItems" :path="item.path" :isSelected="item.isSelected" @itemSelected="unsetItems"/>
+                <SidebarItem v-for="(item, index) in sidebarItems" :key="index" :name="item.name" :icon="item.icon" :subItems="item.subItems" :path="item.path" :isSelected="item.isSelected" @itemSelected="itemSelected($event)"/>
             </ul>
         </div>
 </template>
@@ -11,8 +11,8 @@ import SidebarItem from './SidebarItem'
 
 export default {
     methods: {
-        unsetItems(){
-            console.log('Chamou a função!')
+        itemSelected(itemName){
+            this.$emit('itemSelected', itemName)
         }
     },
     components: { SidebarItem },

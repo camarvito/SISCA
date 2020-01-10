@@ -19,13 +19,14 @@
 export default {
     data(){
         return {
-            isActive: false
+            isActive: this.isSelected
         }
     },
     methods: {
         active(){
-            this.$emit('itemSelected', 'Param')
-            this.isActive = !this.isActive
+            if (!this.isActive){
+                this.$emit('itemSelected', this.name)
+            }
         }
     },
     props: { 
@@ -45,7 +46,7 @@ export default {
         },
         isSelected: {
             type: Boolean,
-            required: true
+            required: false
         }
     }
 }
