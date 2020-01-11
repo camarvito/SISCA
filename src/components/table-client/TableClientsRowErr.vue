@@ -18,7 +18,7 @@ export default {
         background-color: #a5a5a51e;
 
         &--message {
-            padding: 1rem;
+            padding: 2rem;
             text-align: center;
             font-family: inherit;
             font-weight: lighter;

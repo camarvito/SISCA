@@ -1,7 +1,7 @@
 <template>
   <header>
         <nav class="navbar">
-            <h2>SISCA | Sistema da Cantina</h2>
+            <h2> <span class="navbar__acronym">SISCA</span> | <span class="navbar__title">Sistema da Cantina</span></h2>
             <div class="navbar__user-login">
                 <h2>Victor Camargo</h2>
             </div>
@@ -26,6 +26,14 @@ export default {
     background-color: #2980b9;
     
     color: white;
+
+    &__acronym {
+        font-weight: bold;
+    }
+
+    &__title {
+        font-weight: bold;
+    }
 
     &__user-login {
         margin-right: 1rem;
