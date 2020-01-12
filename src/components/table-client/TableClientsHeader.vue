@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .table__header {
     &--cell {
         font-family: inherit;
@@ -24,7 +24,8 @@ export default {
         font-weight: lighter;
         text-align: initial;
         border: 1px solid #dee2e6;
-        padding: 1rem;    
+        padding: 1rem;
+        width: 20%;  
     }
 }
 </style>
