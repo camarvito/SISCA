@@ -5,7 +5,8 @@
         </thead>
         <tbody>
             <TableDebitsRow v-for="(debit, index) in debits" :key="debit.key" :name="debit.name" :date="debit.date" :price="debit.price" :index="index"/>
-            <TableDebitsAdd />
+            <TableDebitsInput v-if="isInputEnable" @inputValid="isInputValid = true"/>
+            <TableDebitsAdd :inputState="isInputEnable" :inputValid="isInputValid" @changeInputState="isInputEnable = !isInputEnable"/>
             <TableDebitsTotal />
         </tbody>
     </table>
@@ -15,17 +16,20 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
 
-import TableDebitsHeader from './TableClientsHeader'
+import TableDebitsHeader from './TableDebitsHeader'
 import TableDebitsRow from './TableDebitsRow'
+import TableDebitsInput from './TableDebitsInput'
 import TableDebitsAdd from './TableDebitsAdd'
 import TableDebitsTotal from './TableDebitsTotal'
 
 export default {
-    components: { TableDebitsHeader, TableDebitsRow, TableDebitsAdd, TableDebitsTotal},
+    components: { TableDebitsHeader, TableDebitsRow, TableDebitsInput, TableDebitsAdd, TableDebitsTotal},
     data() {
         return {
             userId: this.$route.params.id,
             debits: [],
+            isInputEnable: false,
+            isInputValid: false
         }
     },
     methods: {

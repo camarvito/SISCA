@@ -15,5 +15,9 @@ export default {
 </script>
 
 <style>
+.table__body--row--cell {
+    padding: 1.4rem;
+    background-color: #DDD;
+}
 
 </style>

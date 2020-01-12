@@ -1,5 +1,5 @@
 <template>
-    <tr class="table__body--row" :class="'{ isIndexEven : even }, {!isIndexEven : odd }'">
+    <tr class="table__body--row" :class="{ 'even' : this.index % 2 == 0, 'odd' : this.index % 2 != 0 }">
         <td class="table__body--row--cell">{{ date }}</td>
         <td class="table__body--row--cell">{{ name }}</td>
         <td class="table__body--row--cell">{{ price }}</td>
@@ -28,15 +28,7 @@ export default {
             required: true
         }
     },
-    methods: {
-        isIndexEven(){
-            if (this.index % 2 == 0){
-                return true
-            } else {
-                return false
-            } 
-        }
-    }
+    methods: {}
 }
 </script>
 
@@ -56,11 +48,10 @@ export default {
 }
 
 .odd {
-    background-color: lightcoral;
+    background-color: #ddd;
 }
 
 .even {
-    background-color: lightblue;
+    background-color: #eee;
 }
-
 </style>

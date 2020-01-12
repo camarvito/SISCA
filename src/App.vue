@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import Header from './components/Header'
+import Header from './components/layout/header/Header'
 import Main from './components/Main'
-import Trademark from './components/Trademark'
+import Trademark from './components/layout/etc/Trademark'
 
 export default {
   components: { Header, Main, Trademark }
