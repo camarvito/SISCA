@@ -7,8 +7,6 @@
 
 <script>
 import ContentHeader from './ContentHeader'
-// import CadastrarUsuario from '@/components/CadastrarUsuario'
-// import TableClients from './table-client/TableClients'
 
 export default {
     components: { ContentHeader },

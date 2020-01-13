@@ -1,7 +1,7 @@
 export default {
     namespaced: true,
     state: {
-        title: 'Bem vindo',
+        title: 'Buscar cliente',
         clear: false,
         return: true
     },
