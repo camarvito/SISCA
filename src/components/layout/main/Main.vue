@@ -13,17 +13,7 @@ export default {
     data() {
         return {}
     },
-    methods: {
-        itemSelected(itemName){
-            this.sidebarItems.forEach((item, index) => {
-                if (item.name !== itemName){
-                    this.sidebarItems[index].isSelected = false
-                } else {
-                    this.sidebarItems[index].isSelected = true
-                }
-            })
-        }
-    },
+    methods: {},
     components: { Sidebar, Content },
 }
 </script>
@@ -34,7 +24,6 @@ export default {
         display: grid;
         grid-template-columns: 20% 1fr;
         height: 100vh;
-        //grid-auto-rows: minmax(100px, auto);
     }
 }
 </style>

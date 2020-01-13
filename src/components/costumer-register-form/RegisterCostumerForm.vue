@@ -153,6 +153,13 @@ export default {
     },
     watch: {
 
+    },
+    mounted() {
+        this.$store.commit('contentHeader/changeContentHeader', {
+            title: 'Cadastrar Cliente',
+            loadClear: true,
+            loadReturn: true
+        })
     }
 }
 </script>

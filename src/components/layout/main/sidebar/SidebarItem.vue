@@ -17,9 +17,9 @@
 
 <script>
 export default {
-    data(){
-        return {
-            isActive: this.isSelected
+    computed: {
+        isActive() {
+            return this.isSelected
         }
     },
     methods: {
@@ -35,7 +35,8 @@ export default {
             required: true
         },
         path: {
-            type: String
+            type: String,
+            required: false
         },
         icon: {
             type: String,

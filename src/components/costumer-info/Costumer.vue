@@ -1,27 +1,27 @@
 <template>
-  <div class="user__container">
-      <div class="user__photo">
-          <div class="user__photo--img"></div>
+  <div class="costumer__container">
+      <div class="costumer__photo">
+          <div class="costumer__photo--img"></div>
       </div>
-      <div class="user__info">
-          <div class="user__info--name">Victor Camargo Oliveira</div>
-          <div class="user__info--personal"><strong>CPF: </strong>475.801.448-59</div>
-          <div class="user__info--personal"><strong>Telefone: </strong>(11) 97606-4572</div>
-          <div class="user__info--personal"><strong>Matricula: </strong>471419</div>
-          <div class="user__info--personal"><strong>Curso: </strong>Ciência da Computação</div>
-          <div class="user__info--personal"><strong>Situação: </strong>Dívidas Pendentes</div>
+      <div class="costumer__info">
+          <div class="costumer__info--name">Victor Camargo Oliveira</div>
+          <div class="costumer__info--personal"><strong>CPF: </strong>475.801.448-59</div>
+          <div class="costumer__info--personal"><strong>Telefone: </strong>(11) 97606-4572</div>
+          <div class="costumer__info--personal"><strong>Matricula: </strong>471419</div>
+          <div class="costumer__info--personal"><strong>Curso: </strong>Ciência da Computação</div>
+          <div class="costumer__info--personal"><strong>Situação: </strong>Dívidas Pendentes</div>
       </div>
-      <div class="user__debits">
+      <div class="costumer__debits">
           <TableDebits />
       </div>
   </div>
 </template>
 
 <script>
-import TableDebits from './TableDebits'
+// import TableDebits from './TableDebits'
 
 export default {
-    components: { TableDebits },
+    // components: { TableDebits },
     data(){
         return {
             id: this.$route.params.id
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .user {
+    .costumer {
         &__container {
             display: grid;
             grid-template-columns: 30% 1fr;

@@ -1,9 +1,9 @@
 <template>
   <div class="content__header">
-        <div class="content__header--title">Cadastrar cliente</div>
+        <div class="content__header--title">{{ title }}</div>
             <div class="content__header--options">
-                <svg class="content__header--options--icon" @click="setAnimation(); clear();" :class="{ animation__rotate: isRotating }"><use xlink:href="@/assets/sprites.svg#refresh-button"></use></svg>
-                <svg class="content__header--options--icon"><use xlink:href="@/assets/sprites.svg#back-arrow"></use></svg>
+                <svg v-if="loadClear" class="content__header--options--icon" @click="setAnimation(); clear();" :class="{ animation__rotate: isRotating }"><use xlink:href="@/assets/sprites.svg#refresh-button"></use></svg>
+                <svg v-if="loadReturn" class="content__header--options--icon"><use xlink:href="@/assets/sprites.svg#back-arrow"></use></svg>
             </div>
         </div>
 </template>
@@ -15,6 +15,17 @@ export default {
             isRotating: false
         }
     },
+    computed: {
+        title() {
+            return this.$store.state.contentHeader.title
+        },
+        loadClear() {
+            return this.$store.state.contentHeader.clear
+        },
+        loadReturn() {
+            return this.$store.state.contentHeader.title
+        }    
+    },
     methods: {
         setAnimation(){ /* Como não conseguir animar o click usando apenas o CSS programei uma função simples */
             this.isRotating = true
@@ -23,7 +34,8 @@ export default {
             }, 1000)
         },
         clear(){ // Função que emite o evento para limpar os dados do formulário
-            this.$emit('clear')
+            // this.$store.commit('')
+            console.log('implementar')
         }
     }
 }

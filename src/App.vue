@@ -8,7 +8,7 @@
 
 <script>
 import Header from './components/layout/header/Header'
-import Main from './components/Main'
+import Main from './components/layout/main/Main'
 import Trademark from './components/layout/etc/Trademark'
 
 export default {

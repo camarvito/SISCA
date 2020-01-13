@@ -1,7 +1,7 @@
 <template>
     <div class="content">
-        <ContentHeader @clear="clearForm" />
-        <router-view /><!--ref="CadastrarUsuario"-->
+        <ContentHeader />
+        <router-view />
     </div>
 </template>
 
@@ -11,12 +11,12 @@ import ContentHeader from './ContentHeader'
 // import TableClients from './table-client/TableClients'
 
 export default {
-    components: { contentHeader },
-    // methods: {
-    //     clearForm(){
-    //         this.$refs.CadastrarUsuario.clear()
-    //     }
-    // }
+    components: { ContentHeader },
+    methods: {
+        clearForm(){
+            // this.$refs.CadastrarUsuario.clear()
+        }
+    }
 }
 </script>
 

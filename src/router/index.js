@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import TableClients from '../components/table-client/TableClients'
-import CadastrarUsuario from '../components/register-client/RegisterCostumerForm'
-import User from '../components/table-client/User'
+import TableClients from '../components/costumer-table/TableClients'
+import RegisterCostumerForm from '../components/costumer-register-form/RegisterCostumerForm'
+import Costumer from '../components/costumer-info/Costumer'
 
 Vue.use(VueRouter)
 
@@ -16,10 +16,10 @@ const routes = [
     component: TableClients
   },{
     path: '/cadastrar-usuario',
-    component: RegisterCostumerform
+    component: RegisterCostumerForm
   },{
-    path: '/users/:id',
-    component: User
+    path: '/costumers/:id',
+    component: Costumer
   }
   // {
   //   path: '/about',

@@ -10,23 +10,17 @@
 import SidebarItem from './SidebarItem'
 
 export default {
-    data() {
-        return {
-            sidebarItems: this.$store.state.sidebarItems
+    computed: {
+        sidebarItems() {
+            return this.$store.state.sidebar.sidebarItems
         }
     },
     methods: {
-        // itemSelected(itemName){
-        //     this.$emit('itemSelected', itemName)
-        // }
+        itemSelected(name) {
+            this.$store.commit('sidebar/itemSelected', name)
+        }
     },
     components: { SidebarItem },
-    // props: {
-    //     sidebarItems: {
-    //         type: Array,
-    //         required: true
-    //     }
-    // }
 }
 </script>
 

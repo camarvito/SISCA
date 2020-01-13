@@ -1,4 +1,5 @@
 export default {
+    namespaced: true,
     state: {
         sidebarItems: [
             {   
@@ -37,9 +38,15 @@ export default {
         ],
     },
     mutations: {
-
+        itemSelected(state, payload){
+            state.sidebarItems.forEach((item, index) => {
+                if (item.name !== payload){
+                    state.sidebarItems[index].isSelected = false
+                } else {
+                    state.sidebarItems[index].isSelected = true
+                }
+            })
+        }
     },
-    actions: {
-        
-    }
+    actions: {}
 }

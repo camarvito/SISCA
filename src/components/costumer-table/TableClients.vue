@@ -43,6 +43,12 @@ export default {
         }
     },
     mounted() { /* Ao montar o componente, pega do Firebase todos os usuarios existentes e os armazena na instancia */
+        this.$store.commit('contentHeader/changeContentHeader', {
+            title: 'Buscar Cliente',
+            clear: false,
+            return: true
+        })
+        
         let db = firebase.database().ref('users')
         db.on('value', snapshot => {
             snapshot.forEach(childSnapshot => {
