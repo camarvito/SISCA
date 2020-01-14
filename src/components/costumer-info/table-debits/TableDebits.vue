@@ -5,8 +5,8 @@
         </thead>
         <tbody>
             <TableDebitsRow v-for="(debit, index) in debits" :key="debit.key" :name="debit.name" :date="debit.date" :price="debit.price" :index="index"/>
-            <TableDebitsInput v-if="isInputEnable" @inputValid="isInputValid = true"/>
-            <TableDebitsAdd :inputState="isInputEnable" :inputValid="isInputValid" @changeInputState="isInputEnable = !isInputEnable"/>
+            <TableDebitsInput v-if="isInputEnable" />
+            <TableDebitsAdd />
             <TableDebitsTotal />
         </tbody>
     </table>
@@ -28,8 +28,12 @@ export default {
         return {
             userId: this.$route.params.id,
             debits: [],
-            isInputEnable: false,
             isInputValid: false
+        }
+    },
+    computed: {
+        isInputEnable() {
+            return true
         }
     },
     methods: {
@@ -37,7 +41,6 @@ export default {
             const currentUser = firebase.database().ref(`users/${this.userId}/debits`)
             currentUser.on('value', snapshot => {
                 snapshot.forEach(childSnapshot => {
-                    console.log('Entrou aqui')
                     let debit = childSnapshot.val()
                     debit.key = childSnapshot.key /* Adiciona o atributo key, uma chave unica gerada pelo firebase */
                     this.debits.push(debit)

@@ -1,7 +1,7 @@
 <template>
     <tr class="table__body--add-row">
         <td class="table__body--add-row--cell" colspan="5">
-            <button class="btn btn--include uppercase" @click="changeInputState">{{ buttonText[option] }}</button>  
+            <button class="btn btn--include uppercase" @click="stateAction">{{ buttonState.message }}</button>  
         </td>
     </tr>
 </template>
@@ -11,37 +11,23 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 
 export default {
-    props: {
-        inputState: {
-            type: Boolean,
-            required: true
-        },
-        inputValid: {
-            type: Boolean,
-            required: true
-        }
-    },
-    data(){
-        return {
-            isInputEnable: this.inputState,
-            isInputValid: this.inputValid,
-            buttonText: ['Adicionar novo débito', 'Cancelar', 'Salvar']
-        }
-    },
+    data(){},
     computed: {
-        option() {
-            if (this.isInputEnable && !this.isInputValid){
-                return 1
-            } else if (this.isInputValid) {
-                return 2
-            } else {
-                return 0
-            }
+        currentState() {
+            return this.$store.state.tableDebits.currentState
+        },
+        buttonState() {
+            return this.$store.state.tableDebits.buttonState[this.currentState]
         }
     },
     methods: {
-        changeInputState() {
-            this.$emit('changeInputState')
+        currentDate() {
+            let nowDate = Date(Date.now()).toString()
+            const dateRegExp = /\w{3}\s\d{2}\s\d{4}\s\d{2}:\d{2}:\d{2}/i
+            return nowDate.match(dateRegExp)
+        },
+        stateAction() {
+            this.$store.dispatch('changeState', this.buttonState.code)
         }
     }
 }

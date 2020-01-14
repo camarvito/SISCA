@@ -4,11 +4,11 @@
           <div class="costumer__photo--img"></div>
       </div>
       <div class="costumer__info">
-          <div class="costumer__info--name">Victor Camargo Oliveira</div>
-          <div class="costumer__info--personal"><strong>CPF: </strong>475.801.448-59</div>
-          <div class="costumer__info--personal"><strong>Telefone: </strong>(11) 97606-4572</div>
-          <div class="costumer__info--personal"><strong>Matricula: </strong>471419</div>
-          <div class="costumer__info--personal"><strong>Curso: </strong>Ciência da Computação</div>
+          <div class="costumer__info--name">{{ costumer.name }}</div>
+          <div class="costumer__info--personal"><strong>CPF: </strong>{{ costumer.cpf }}</div>
+          <div class="costumer__info--personal"><strong>Telefone: </strong>{{ costumer.phone }}</div>
+          <div class="costumer__info--personal"><strong>Matricula: </strong>{{ costumer.registration }}</div>
+          <div class="costumer__info--personal"><strong>Curso: </strong>{{ costumer.course }}</div>
           <div class="costumer__info--personal"><strong>Situação: </strong>Dívidas Pendentes</div>
       </div>
       <div class="costumer__debits">
@@ -18,14 +18,25 @@
 </template>
 
 <script>
-// import TableDebits from './TableDebits'
+import firebase from 'firebase/app';
+import 'firebase/database';
+
+import TableDebits from './table-debits/TableDebits'
 
 export default {
-    // components: { TableDebits },
+    components: { TableDebits },
     data(){
         return {
-            id: this.$route.params.id
+            id: this.$route.params.id,
+            costumer: ''
         }
+    },
+    mounted() {
+        let ref = firebase.database().ref(`users/${this.id}`)
+        ref.on('value', snapshot => {
+            let currentUser = snapshot.val()
+            this.costumer = currentUser
+        })
     }
 }
 </script>

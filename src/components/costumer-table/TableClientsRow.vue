@@ -1,9 +1,9 @@
 <template>
 <tbody>
   <tr class="table__body--row">
-    <router-link tag="td" class="table__body--cell" :to="`users/${id}`">{{ name }}</router-link>
-    <router-link tag="td" class="table__body--cell" :to="`users/${id}`">{{ registration }}</router-link>
-    <router-link tag="td" class="table__body--cell" :to="`users/${id}`">{{ cpf }}</router-link>
+    <router-link tag="td" class="table__body--cell" :to="`costumers/${id}`">{{ name }}</router-link>
+    <router-link tag="td" class="table__body--cell" :to="`costumers/${id}`">{{ registration }}</router-link>
+    <router-link tag="td" class="table__body--cell" :to="`costumers/${id}`">{{ cpf }}</router-link>
     <td class="table__body--cell">
         <button class="btn btn--include">
             Cadastrar novo débito
@@ -44,9 +44,7 @@ export default {
             type: String
         },
     },
-    methods: {
-
-    }
+    methods: {}
 }
 </script>
 
