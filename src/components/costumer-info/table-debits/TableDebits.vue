@@ -28,12 +28,15 @@ export default {
         return {
             userId: this.$route.params.id,
             debits: [],
-            isInputValid: false
         }
     },
     computed: {
         isInputEnable() {
-            return true
+            if (this.$store.state.tableDebits.currentState == 1 || this.$store.state.tableDebits.currentState == 2){
+                return true
+            } else {
+                return false
+            }
         }
     },
     methods: {

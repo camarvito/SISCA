@@ -11,7 +11,6 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 
 export default {
-    data(){},
     computed: {
         currentState() {
             return this.$store.state.tableDebits.currentState
@@ -27,7 +26,7 @@ export default {
             return nowDate.match(dateRegExp)
         },
         stateAction() {
-            this.$store.dispatch('changeState', this.buttonState.code)
+            this.$store.dispatch('tableDebits/changeState', this.buttonState.code)
         }
     }
 }

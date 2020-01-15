@@ -1,8 +1,8 @@
 <template>
     <tr>
         <td class="table__body--input-row" colspan="5">
-            <input class="table__body--input-row--bar" type="text" placeholder="Nome do Pedido" v-model="debit.name" @blur="isInputValid">
-            <input class="table__body--input-row--bar" type="text" placeholder="Preço" v-model="debit.price" @blur="isInputValid">
+            <input class="table__body--input-row--bar" type="text" placeholder="Nome do Pedido" v-model="name" @blur="isInputValid">
+            <input class="table__body--input-row--bar" type="text" placeholder="Preço" v-model="price" @blur="isInputValid">
         </td>
     </tr>
 </template>
@@ -10,29 +10,29 @@
 <script>
 export default {
     computed: {
-        debit: {
-            name: {
-                get() {
-                    return this.$store.state.tableDebits.debit.name
-                },
-                set(value) {
-                    this.$store.commit('tableDebits/setName', value)
-                }
+        name: {
+            get() {
+                return this.$store.state.tableDebits.debit.name
             },
-            price: {
-                get() {
-                    return this.$store.state.tableDebits.debit.price
-                },
-                set(value) {
-                    this.$store.commit('tableDebits/setPrice', value)
-                }
+            set(value) {
+                this.$store.commit('tableDebits/setName', value)
+            }
+        },
+        price: {
+            get() {
+                return this.$store.state.tableDebits.debit.price
+            },
+            set(value) {
+                this.$store.commit('tableDebits/setPrice', value)
             }
         }
     },
     methods: {
         isInputValid() {
-            if (this.debit.name && this.debit.price){
-                this.$store.commit('tableDebits/changeState', 2)
+            if (this.name && this.price){
+                this.$store.commit('tableDebits/setButtonState', 2)
+            } else {
+                this.$store.commit('tableDebits/setButtonState', 1)
             }
         }
     }
