@@ -1,10 +1,24 @@
 <template>
-    <tr class="table__body--row" :class="{ 'even' : this.index % 2 == 0, 'odd' : this.index % 2 != 0 }">
+    <tr class="table__body--row" :class="{ 'even' : this.index % 2 == 0, 'odd' : this.index % 2 != 0, 'table__body--row--paid' : isPaid}">
         <td class="table__body--row--cell">{{ date }}</td>
         <td class="table__body--row--cell">{{ name }}</td>
-        <td class="table__body--row--cell">{{ price }}</td>
-        <td class="table__body--row--cell"> NÃO PAGO</td>
-        <td class="table__body--row--cell"><button class="btn btn--include uppercase">A</button></td>
+        <td class="table__body--row--cell">R$ {{ price }}</td>
+        <td class="table__body--row--cell">
+            <span v-show="isPaid">Pago</span>
+            <span v-show="!isPaid">Não pago</span>
+        </td>
+        <td class="table__body--row--cell">
+            <button class="btn btn--pay" :class="{'btn--paid': isPaid}" @click="isPaid = !isPaid">
+                <svg class="icon">
+                    <use xlink:href="@/assets/sprites.svg#dollar-symbol"></use>
+                </svg>
+            </button>
+            <button class="btn btn--exclude">
+                <svg class="icon">
+                    <use xlink:href="@/assets/sprites.svg#bin"></use>
+                </svg>
+            </button>
+        </td>
     </tr>
 </template>
 
@@ -26,6 +40,10 @@ export default {
         price: {
             type: Number,
             required: true
+        },
+        isPaid: {
+            type: Boolean,
+            required: true
         }
     },
     methods: {}
@@ -42,7 +60,12 @@ export default {
             text-align: center;
             text-transform: uppercase;
             padding: 1.4rem;
-            color: #000;
+            color: inherit;
+        }
+
+        &--paid {
+            background-color: rgb(46, 204, 113) !important;
+            color: #FFF !important;
         }
     }
 }
@@ -53,5 +76,51 @@ export default {
 
 .even {
     background-color: #eee;
+}
+
+.btn {
+    display: inline-block;
+    border: 1px solid transparent;
+    padding: .7rem .7rem;
+    margin: 0 .5rem;
+    border-radius: .25rem;
+    transition: color .15s;
+    cursor: pointer;
+
+    &--pay {
+        background-color: rgb(46, 204, 113);
+        box-shadow: 0px 0px 2px .2px rgba(0,0,0,0.35);
+        outline: none;
+
+        &:active {
+            background-color: rgb(16, 174, 83);
+        }
+    }
+
+    &--exclude {
+        background-color: #e74c3c;
+        box-shadow: 0px 0px 2px .2px rgba(0,0,0,0.35);
+        outline: none;
+
+        &:active {
+            background-color: rgb(201, 46, 30);
+        }
+    }
+
+    &--paid {
+        background-color: rgb(169, 175, 179);
+        box-shadow: 0px 0px 2px .2px rgba(0,0,0,0.35);
+        outline: none;
+
+        &:active {
+            background-color: rgb(139, 145, 149);
+        }
+    }
+}
+
+.icon {
+    height: 1.3rem;
+    width: 1.3rem;
+    fill: #FFF;
 }
 </style>

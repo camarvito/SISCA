@@ -4,10 +4,10 @@
             <TableDebitsHeader />
         </thead>
         <tbody>
-            <TableDebitsRow v-for="(debit, index) in debits" :key="debit.key" :name="debit.name" :date="debit.date" :price="debit.price" :index="index"/>
-            <TableDebitsInput v-if="isInputEnable" />
-            <TableDebitsAdd />
+            <TableDebitsRow v-for="(debit, index) in debits" :key="debit.key" :name="debit.name" :date="debit.date" :price="debit.price" :index="index" :isPaid="false"/>
             <TableDebitsTotal />
+            <TableDebitsInput />
+            <!-- <TableDebitsAdd /> -->
         </tbody>
     </table>
 </template>

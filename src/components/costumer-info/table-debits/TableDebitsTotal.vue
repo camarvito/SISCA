@@ -4,7 +4,7 @@
         <td class="table__body--row--cell"></td>
         <td class="table__body--row--cell"></td>
         <td class="table__body--row--cell"></td>
-        <td class="table__body--row--cell">{{ priceTotal }}</td>
+        <td class="table__body--row--cell">R$ 7,30</td>
     </tr>
 </template>
 
@@ -14,10 +14,9 @@ export default {
 }
 </script>
 
-<style>
-.table__body--row--cell {
-    padding: 1.4rem;
-    background-color: #DDD;
-}
-
+<style lang="scss" scoped>
+    .table__body--row--cell {
+        text-align: center;
+        padding: 1.4rem;
+    }
 </style>

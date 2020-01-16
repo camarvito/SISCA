@@ -32,6 +32,7 @@ export default {
                 subItems: ['Preferências de usuário', 'Ajustes de administrador']   
             }, {
                 name: 'Suporte',
+                path: 'support',
                 icon: '<use xlink:href="/img/sprites.8dc85041.svg#help"></use>',
                 isSelected: false
             }

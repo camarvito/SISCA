@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import TableClients from '../components/costumer-table/TableClients'
 import RegisterCostumerForm from '../components/costumer-register-form/RegisterCostumerForm'
 import Costumer from '../components/costumer-info/Costumer'
+import Support from '../components/support/Support'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,9 @@ const routes = [
   },{
     path: '/costumers/:id',
     component: Costumer
+  },{
+    path: '/support',
+    component: Support
   }
 ]
 

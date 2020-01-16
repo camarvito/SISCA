@@ -1,38 +1,50 @@
 <template>
     <tr>
         <td class="table__body--input-row" colspan="5">
-            <input class="table__body--input-row--bar" type="text" placeholder="Nome do Pedido" v-model="name" @blur="isInputValid">
-            <input class="table__body--input-row--bar" type="text" placeholder="Preço" v-model="price" @blur="isInputValid">
+            <input class="table__body--input-row--bar" type="text" placeholder="Nome do pedido" v-model="name">
+            <input class="table__body--input-row--bar" type="text" placeholder="R$ 0.00" v-model="price">
+            <button class="table__body--input-row--button" @click="isInputValid">+</button>
         </td>
     </tr>
 </template>
 
 <script>
+import firebase from 'firebase/app';
+import 'firebase/database';
+
 export default {
-    computed: {
-        name: {
-            get() {
-                return this.$store.state.tableDebits.debit.name
-            },
-            set(value) {
-                this.$store.commit('tableDebits/setName', value)
-            }
-        },
-        price: {
-            get() {
-                return this.$store.state.tableDebits.debit.price
-            },
-            set(value) {
-                this.$store.commit('tableDebits/setPrice', value)
-            }
+    data() {
+        return {
+            id: this.$route.params.id,
+            name: '',
+            price: ''
         }
     },
     methods: {
         isInputValid() {
-            if (this.name && this.price){
-                this.$store.commit('tableDebits/setButtonState', 2)
+            const debitNameRegex = /\w+/i
+            const debitPriceRegex = /\w{2}\s\d+\.\d{2}/i
+            if (this.name.match(debitNameRegex) && this.price.match(debitPriceRegex)){
+                console.log('Entrou aqui')
+                function currentDate() {
+                    let nowDate = Date(Date.now()).toString()
+                    const dateRegExp = /\w{3}\s\d{2}\s\d{4}\s\d{2}:\d{2}:\d{2}/i
+                    return nowDate.match(dateRegExp)
+                }
+                
+                let debit = {
+                    name: this.name,
+                    price: this.price,
+                    date: currentDate()[0]
+                }
+
+                console.log(debit)
+
+                const db = firebase.database()
+                db.ref(`users/${this.id}/debits`).push(debit)
+
             } else {
-                this.$store.commit('tableDebits/setButtonState', 1)
+                console.log('Formulário errado!')
             }
         }
     }
@@ -43,12 +55,31 @@ export default {
 .table__body--input-row {
     background-color: #576574;
     text-align: center;
-    padding: 1.4rem;
+    padding: .9rem;
 
     &--bar {
         font-size: 1.6rem;
         margin: 0 1rem;
         padding: .5rem;
+        border: none;
+
+        &::placeholder {
+            font-size: 1.2rem;
+        }
+    }
+
+    &--button {
+        display: inline-block;
+        border: 1px solid transparent;
+        margin: 0 .5rem;
+        height: 2.1rem;
+        width: 2.1rem;
+        border-radius: 50%;
+        transition: color .15s;
+        font-weight: bold;
+        color: #FFF;
+        background-color: #44bd32;
+        cursor: pointer;
     }
 }
 </style>
