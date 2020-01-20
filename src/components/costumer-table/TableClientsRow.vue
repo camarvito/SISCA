@@ -90,6 +90,10 @@ export default {
     &--include {
         background-color: #2ecc71;
         box-shadow: 0px 0px 2px .2px rgba(0,0,0,0.35);
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #FFF;
     }
 
     &--exclude {

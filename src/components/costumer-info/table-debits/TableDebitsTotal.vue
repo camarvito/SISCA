@@ -15,8 +15,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .table__body--row--cell {
-        text-align: center;
-        padding: 1.4rem;
+    .table__body--row {
+        
+        &--total {
+            background-color: #353b48;
+        }
+
+        &--cell {
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 1.4rem;
+            color: #FFF;
+        }
     }
 </style>

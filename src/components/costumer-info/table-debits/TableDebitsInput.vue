@@ -2,17 +2,19 @@
     <tr>
         <td class="table__body--input-row" colspan="5">
             <input class="table__body--input-row--bar" type="text" placeholder="Nome do pedido" v-model="name">
-            <input class="table__body--input-row--bar" type="text" placeholder="R$ 0.00" v-model="price">
+            <input class="table__body--input-row--bar" type="text" placeholder="R$ 0.00" v-model="price" v-mask="'R$ #.##'">
             <button class="table__body--input-row--button" @click="isInputValid">+</button>
         </td>
     </tr>
 </template>
 
 <script>
-import firebase from 'firebase/app';
-import 'firebase/database';
+import firebase from 'firebase/app'
+import 'firebase/database'
+import { TheMask } from 'vue-the-mask'
 
 export default {
+    components: { TheMask },
     data() {
         return {
             id: this.$route.params.id,
@@ -23,9 +25,9 @@ export default {
     methods: {
         isInputValid() {
             const debitNameRegex = /\w+/i
-            const debitPriceRegex = /\w{2}\s\d+\.\d{2}/i
+            const debitPriceRegex = /\d+(\.\d+)?/
+
             if (this.name.match(debitNameRegex) && this.price.match(debitPriceRegex)){
-                console.log('Entrou aqui')
                 function currentDate() {
                     let nowDate = Date(Date.now()).toString()
                     const dateRegExp = /\w{3}\s\d{2}\s\d{4}\s\d{2}:\d{2}:\d{2}/i
@@ -34,8 +36,9 @@ export default {
                 
                 let debit = {
                     name: this.name,
-                    price: this.price,
-                    date: currentDate()[0]
+                    price: this.price.match(debitPriceRegex)[0],
+                    date: currentDate()[0],
+                    isPaid: false
                 }
 
                 console.log(debit)
@@ -79,7 +82,12 @@ export default {
         font-weight: bold;
         color: #FFF;
         background-color: #44bd32;
+        outline: none;
         cursor: pointer;
+
+        &:active {
+            background-color: rgb(38, 159, 20);
+        }
     }
 }
 </style>

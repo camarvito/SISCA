@@ -1,14 +1,16 @@
 <template>
     <div>
-        <router-link tag="li" class="sidebar__item" @click.native="active" :class="{'sidebar__item--selected': isActive}" :to="`/${path}`">
+        <router-link v-if="isClickable" tag="li" class="sidebar__item" @click.native="active" :class="{'sidebar__item--selected': isActive}" :to="`/${path}`">
             <svg v-html="icon" class="sidebar__item--icon" :style="isActive ? {'fill' : '#000'} : {}"></svg>
-
             <span class="sidebar__item--name">{{ name }}</span>
-            
             <svg v-if="subItems" :class="{'sidebar__item--arrow-active': isActive, 'sidebar__item--arrow': !isActive}">
                 <use xlink:href="@/assets/sprites.svg#arrow-point-to-right"></use>
             </svg>
         </router-link>
+        <li v-if="!isClickable" class="sidebar__item--not-clickable">
+            <svg v-html="icon" class="sidebar__item--icon"></svg>
+            <span class="sidebar__item--name">{{ name }} <span style="font-size: 1rem">(Em breve)</span></span>
+        </li>
         <ul v-if="subItems && isActive">
                 <li v-for="item in subItems" :key="item" class="sidebar__item__sub--li">{{ item }}</li>
         </ul>
@@ -48,6 +50,10 @@ export default {
         isSelected: {
             type: Boolean,
             required: false
+        },
+        isClickable: {
+            type: Boolean,
+            required: true
         }
     }
 }
@@ -60,6 +66,13 @@ export default {
         padding: 2rem 1rem;
         margin: 1rem;
         cursor: pointer;
+
+        &--not-clickable {
+            display: flex;
+            align-items: center;
+            padding: 2rem 1rem;
+            margin: 1rem;
+        }
 
         &:hover &--icon, &:hover &--name {
             color: #000;

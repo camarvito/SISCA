@@ -7,8 +7,7 @@
       <div class="support__text">
           <div class="support__text--paragraph center"> SISCA v1.0.1 Beta</div>
           <div class="support__text--paragraph">O <strong>Sis</strong>tema da <strong>Ca</strong>ntina é um projeto da célula de desenvolvimento de software do INOVE, que tem o propósito de auxiliar atividades de contabilidade do estabelecimento. Desenvolvido inicialmente por Victor Camargo (Vito), aluno de Ciência da Computação, sobre coordenação de Roberta Dutra e Simone Nunes. </div>
-          <div class="support__text--paragraph">Contato: <br>vito@alu.ufc.br <br>devinove@ufc.br </div>
-          <div class="support__text--paragraph">Open Source Project 2020 - 2021</div>
+          <div class="support__text--paragraph">Contato:<br> <br>vito@alu.ufc.br <br>devinove@ufc.br </div>
       </div>
   </div>
 </template>

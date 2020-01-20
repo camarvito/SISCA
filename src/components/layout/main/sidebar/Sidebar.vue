@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
             <ul>
-                <SidebarItem v-for="(item, index) in sidebarItems" :key="index" :name="item.name" :icon="item.icon" :subItems="item.subItems" :path="item.path" :isSelected="item.isSelected" @itemSelected="itemSelected($event)"/>
+                <SidebarItem v-for="(item, index) in sidebarItems" :key="index" :name="item.name" :icon="item.icon" :subItems="item.subItems" :path="item.path" :isSelected="item.isSelected" :isClickable="item.isClickable" @itemSelected="itemSelected($event)"/>
             </ul>
         </div>
 </template>

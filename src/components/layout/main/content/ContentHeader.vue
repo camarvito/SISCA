@@ -3,7 +3,7 @@
         <div class="content__header--title">{{ title }}</div>
             <div class="content__header--options">
                 <svg v-if="loadClear" class="content__header--options--icon" @click="setAnimation(); clear();" :class="{ animation__rotate: isRotating }"><use xlink:href="@/assets/sprites.svg#refresh-button"></use></svg>
-                <svg v-if="loadReturn" class="content__header--options--icon"><use xlink:href="@/assets/sprites.svg#back-arrow"></use></svg>
+                <svg v-if="loadReturn" class="content__header--options--icon" @click="goBack()"><use xlink:href="@/assets/sprites.svg#back-arrow"></use></svg>
             </div>
         </div>
 </template>
@@ -35,6 +35,10 @@ export default {
         },
         clear(){ // Função que emite o evento para limpar os dados do formulário
             // this.$store.commit('')
+            console.log('implementar')
+        },
+        goBack() {
+            /* window.history.back() - Isso bugará o "Active" da Sidebar. */
             console.log('implementar')
         }
     }

@@ -5,36 +5,43 @@ export default {
             {   
                 name: 'Home', 
                 path: '/home', 
-                icon: '<use xlink:href="/img/sprites.8dc85041.svg#home-icon-silhouette"></use>', 
-                isSelected: true 
+                icon: '<use xlink:href="/img/sprites.93374e3c.svg#home-icon-silhouette"></use>', 
+                isSelected: true,
+                isClickable: true
             }, {
                 name: 'Cadastrar cliente',  
                 path: 'cadastrar-usuario',
-                icon: '<use xlink:href="/img/sprites.8dc85041.svg#new-user"></use>',
-                isSelected: false
+                icon: '<use xlink:href="/img/sprites.93374e3c.svg#new-user"></use>',
+                isSelected: false,
+                isClickable: true
             }, {
                 name: 'Pagar débitos',
-                icon: '<use xlink:href="/img/sprites.8dc85041.svg#give-money"></use>',
-                isSelected: false  
+                icon: '<use xlink:href="/img/sprites.93374e3c.svg#give-money"></use>',
+                isSelected: false,
+                isClickable: false  
             }, {
                 name: 'Gerencial',
-                icon: '<use xlink:href="/img/sprites.8dc85041.svg#line-chart"></use>',
+                icon: '<use xlink:href="/img/sprites.93374e3c.svg#line-chart"></use>',
+                subItems: ['Ver devedores', 'Relatório últimos 30 dias', 'Relatório completo'],
                 isSelected: false,
-                subItems: ['Ver devedores', 'Relatório últimos 30 dias', 'Relatório completo']
+                isClickable: true
             }, {
                 name: 'Logs',
-                icon: '<use xlink:href="/img/sprites.8dc85041.svg#medical-notes-symbol-of-a-list-paper-on-a-clipboard"></use>',
+                icon: '<use xlink:href="/img/sprites.93374e3c.svg#medical-notes-symbol-of-a-list-paper-on-a-clipboard"></use>',
                 isSelected: false,
+                isClickable: false
             }, {
                 name: 'Configuração',
-                icon: '<use xlink:href="/img/sprites.8dc85041.svg#two-settings-cogwheels"></use>',
+                icon: '<use xlink:href="/img/sprites.93374e3c.svg#two-settings-cogwheels"></use>',
+                subItems: ['Preferências de usuário', 'Ajustes de administrador'],
                 isSelected: false,
-                subItems: ['Preferências de usuário', 'Ajustes de administrador']   
+                isClickable: false
             }, {
                 name: 'Suporte',
                 path: 'support',
-                icon: '<use xlink:href="/img/sprites.8dc85041.svg#help"></use>',
-                isSelected: false
+                icon: '<use xlink:href="/img/sprites.93374e3c.svg#help"></use>',
+                isSelected: false,
+                isClickable: true
             }
         ],
     },

@@ -2,6 +2,11 @@
     <div>
         <div class="search__container">
             <input type="text" class="search__bar" placeholder="Digite o nome do cliente" v-model="inputName" @input="filterUsers" />
+            <button class="search__bar__button">
+                <svg class="search__bar__button--icon">
+                    <use xlink:href="@/assets/sprites.svg#magnifying-glass"></use>
+                </svg>
+            </button>
         </div>
 
         <div class="table__container">
@@ -85,6 +90,21 @@ export default {
         &::placeholder {
             font-weight: 100;
             text-transform: initial;
+        }
+
+        &__button {
+            position: absolute;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            right: 5rem;
+            top: 17.7rem;
+
+            &--icon {
+                height: 2rem;
+                width: 2rem;
+                fill: #75797d;
+            }
         }
     }
 }

@@ -49,6 +49,12 @@ export default {
             let currentUser = snapshot.val()
             this.costumer = currentUser
         })
+
+        this.$store.commit('contentHeader/changeContentHeader', {
+            title: 'Dados do Cliente',
+            loadClear: false,
+            loadReturn: true
+        })
     }
 }
 </script>
@@ -72,7 +78,7 @@ export default {
             &--img {
                 height: 18rem;
                 width: 18rem;
-                background-color: yellowgreen;
+                background-color: #f0f0f0;
                 border-radius: 50%;
             }
         }
@@ -94,7 +100,7 @@ export default {
                     flex-direction: row;
 
                     &--right {
-                        margin-left: 4rem;
+                        margin-left: 5rem;
                         text-align: end;
                     }
 
@@ -106,7 +112,7 @@ export default {
             
             &--name {
                 font-family: inherit;
-                font-size: 2rem;
+                font-size: 2.5rem;
                 font-weight: bold;
                 text-transform: uppercase;
                 margin: .5rem;
