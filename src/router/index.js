@@ -4,6 +4,7 @@ import TableClients from '../components/costumer-table/TableClients'
 import RegisterCostumerForm from '../components/costumer-register-form/RegisterCostumerForm'
 import Costumer from '../components/costumer-info/Costumer'
 import Support from '../components/support/Support'
+import LoginScreen from '../components/login-screen/LoginScreen'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,9 @@ const routes = [
   },{
     path: '/support',
     component: Support
+  },{
+    path: '/login',
+    component: LoginScreen
   }
 ]
 

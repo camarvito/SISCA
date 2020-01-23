@@ -4,7 +4,7 @@ export default {
         sidebarItems: [
             {   
                 name: 'Home', 
-                path: '/home', 
+                path: 'home', 
                 icon: '<use xlink:href="/img/sprites.93374e3c.svg#home-icon-silhouette"></use>', 
                 isSelected: true,
                 isClickable: true
@@ -27,6 +27,7 @@ export default {
                 isClickable: true
             }, {
                 name: 'Logs',
+                path: 'login',
                 icon: '<use xlink:href="/img/sprites.93374e3c.svg#medical-notes-symbol-of-a-list-paper-on-a-clipboard"></use>',
                 isSelected: false,
                 isClickable: false

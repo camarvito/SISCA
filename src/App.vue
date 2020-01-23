@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <Header />
-    <Main />
+    <LoginScreen />
+    <!-- <Header />
+    <Main /> -->
   </div>
 </template>
 
 <script>
 import Header from './components/layout/header/Header'
 import Main from './components/layout/main/Main'
-import Trademark from './components/layout/etc/Trademark'
+import LoginScreen from './components/login-screen/LoginScreen'
 
 export default {
-  components: { Header, Main, Trademark }
+  components: { Header, Main, LoginScreen }
 }
 </script>
 
