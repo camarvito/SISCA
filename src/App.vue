@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <LoginScreen />
-    <!-- <Header />
-    <Main /> -->
+    <!-- <LoginScreen /> -->
+    <Header />
+    <Main />
   </div>
 </template>
 
