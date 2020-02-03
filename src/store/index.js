@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import costumers from './modules/costumers'
 import sidebar from './modules/sidebar'
 import contentHeader from './modules/contentHeader'
 import tableDebits from './modules/tableDebits'
@@ -11,5 +12,5 @@ export default new Vuex.Store({
   state: {},
   mutations: {},
   actions: {},
-  modules: { sidebar, contentHeader, tableDebits }
+  modules: { costumers, sidebar, contentHeader, tableDebits }
 })

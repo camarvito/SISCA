@@ -3,14 +3,14 @@
         <td class="table__body--input-row" colspan="5">
             <input class="table__body--input-row--bar" type="text" placeholder="Nome do pedido" v-model="name">
             <input class="table__body--input-row--bar" type="text" placeholder="R$ 0.00" v-model="price" v-mask="'R$ #.##'">
-            <button class="table__body--input-row--button" @click="isInputValid">+</button>
+            <button class="table__body--input-row--button" @click="send">+</button>
         </td>
     </tr>
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import 'firebase/database'
+import gql from 'graphql-tag'
+
 import { TheMask } from 'vue-the-mask'
 
 export default {
@@ -23,7 +23,7 @@ export default {
         }
     },
     methods: {
-        isInputValid() {
+        async send() {
             const debitNameRegex = /\w+/i
             const debitPriceRegex = /\d+(\.\d+)?/
 
@@ -36,15 +36,41 @@ export default {
                 
                 let debit = {
                     name: this.name,
-                    price: this.price.match(debitPriceRegex)[0],
+                    price: parseFloat(this.price.match(debitPriceRegex)[0]),
                     date: currentDate()[0],
                     isPaid: false
                 }
 
-                console.log(debit)
-
-                const db = firebase.database()
-                db.ref(`users/${this.id}/debits`).push(debit)
+                await this.$api.mutate({
+                    mutation: gql`
+                        mutation (
+                            $id: ID!
+                            $name: String!
+                            $price: Float!
+                            $date: String!
+                            $isPaid: Boolean!
+                        ) {
+                            newDebit(
+                                data: {
+                                    costumerId: $id
+                                    name: $name
+                                    price: $price
+                                    date: $date
+                                    isPaid: $isPaid
+                                }
+                            ) { name price date }
+                        }
+                    `,
+                    variables: {
+                        id: this.id,
+                        name: debit.name,
+                        price: debit.price,
+                        date: debit.date
+                    }
+                }).then(result => {
+                    // Implementar
+                    // this.$store.dispatch('tableDebits/loadDebits')
+                }).catch(e => console.log(e))
 
             } else {
                 console.log('Formulário errado!')

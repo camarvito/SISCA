@@ -4,54 +4,71 @@
             <TableDebitsHeader />
         </thead>
         <tbody>
-            <TableDebitsRow v-for="(debit, index) in debits" :key="index" :name="debit.name" :date="debit.date" :price="debit.price" :index="index" :isPaid="debit.isPaid"/>
-            <TableDebitsTotal />
+            <TableDebitsRow v-for="(debit, index) in debits" :key="index" :debitId="debit.id" :name="debit.name" :date="debit.date" :price="debit.price" :index="index" :isPaid="debit.isPaid"/>
+            <TableDebitsTotal :prices="getDebits" />
             <TableDebitsInput />
         </tbody>
     </table>
 </template>
 
 <script>
-import firebase from 'firebase/app';
-import 'firebase/database';
+// import gql from 'graphql-tag'
 
 import TableDebitsHeader from './TableDebitsHeader'
 import TableDebitsRow from './TableDebitsRow'
 import TableDebitsInput from './TableDebitsInput'
-import TableDebitsAdd from './TableDebitsAdd'
 import TableDebitsTotal from './TableDebitsTotal'
 
 export default {
-    components: { TableDebitsHeader, TableDebitsRow, TableDebitsInput, TableDebitsAdd, TableDebitsTotal},
+    props: {
+        debits: {
+            type: Array,
+            required: false
+        }
+    },
+    components: { 
+        TableDebitsHeader, 
+        TableDebitsRow, 
+        TableDebitsInput,
+        TableDebitsTotal 
+    },
     data() {
         return {
             userId: this.$route.params.id,
-            debits: [],
         }
     },
     computed: {
         isInputEnable() {
-            if (this.$store.state.tableDebits.currentState == 1 || this.$store.state.tableDebits.currentState == 2){
-                return true
+            if (this.$store
+                    .state
+                    .tableDebits
+                    .currentState == 1 || 
+                this.$store
+                    .state
+                    .tableDebits
+                    .currentState == 2){
+                        return true
             } else {
                 return false
+            }
+        },
+        getDebits() {
+            const prices = []
+
+            if (!this.debits) {
+                return prices
+            } else {
+                this.debits.forEach(debit => {
+                    prices.push(debit.price)    
+                })
+
+                return prices
             }
         }
     },
     methods: {
-        getUserDebits(){
-            const currentUser = firebase.database().ref(`users/${this.userId}/debits`)
-            currentUser.on('value', snapshot => {
-                snapshot.forEach(childSnapshot => {
-                    let debit = childSnapshot.val()
-                    debit.key = childSnapshot.key /* Adiciona o atributo key, uma chave unica gerada pelo firebase */
-                    this.debits.push(debit)
-                })
-            })
-        }
     },
     mounted() {
-        this.getUserDebits()
     }
 }
 </script>

@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import ContentHeader from './ContentHeader'
 
 export default {
@@ -16,6 +17,15 @@ export default {
         clearForm(){
             // this.$refs.CadastrarUsuario.clear()
         }
+    },
+    mounted() {
+        this.$api.query({
+            query: gql`{
+                costumers { id name cpf phone type registry course }
+            }`,
+        }).then(result => result.data.costumers
+            .forEach(costumer => this.$store.state.costumers.loadedCostumers.push(costumer))
+        )
     }
 }
 </script>

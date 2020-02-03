@@ -26,8 +26,8 @@
                     </div>
             
                     <div class="content__form__input-container--item input--1-of-4">
-                        <label for="name-input" class="input__text--label" :class="{ 'input__correct--text': user.isRegistrationValid, 'input__wrong--text': user.isRegistrationInitialized }">Matricula</label>
-                        <input type="text" placeholder="123456" class="input__text--type" :class="{ 'input__correct': user.isRegistrationValid , 'input__correct--text': user.isRegistrationValid , 'input__wrong': user.isRegistrationInitialized, 'input__wrong--text': user.isRegistrationInitialized }" v-mask="'######'" v-model.trim="user.registration" @blur="checkForm(user.registration)">
+                        <label for="name-input" class="input__text--label" :class="{ 'input__correct--text': user.isRegistryValid, 'input__wrong--text': user.isRegistryInitialized }">Matricula</label>
+                        <input type="text" placeholder="123456" class="input__text--type" :class="{ 'input__correct': user.isRegistryValid , 'input__correct--text': user.isRegistryValid , 'input__wrong': user.isRegistryInitialized, 'input__wrong--text': user.isRegistryInitialized }" v-mask="'######'" v-model.trim="user.registry" @blur="checkForm(user.registry)">
                     </div>
 
                     <div class="content__form__input-container--item input--1-of-4">
@@ -45,8 +45,7 @@
 </template>
 
 <script>
-import firebase from 'firebase/app';
-import 'firebase/database';
+import gql from 'graphql-tag'
 
 import { TheMask } from 'vue-the-mask'
 
@@ -70,9 +69,9 @@ export default {
                     { code: 2, name: 'Servidor'},
                     { code: 3, name: 'Outro'} 
                 ],
-                registration: '',
-                isRegistrationInitialized: false,
-                isRegistrationValid: false,
+                registry: '',
+                isRegistryInitialized: false,
+                isRegistryValid: false,
                 course: 'Ciência da Computação',
                 courses: [
                     { code: 1, name: 'Ciência da Computação' },
@@ -99,10 +98,10 @@ export default {
                 const phoneRegex = /\(\d{2}\)\s\d{5}\-\d{4}/
                 this.user.isPhoneInitialized = true
                 this.user.isPhoneValid = this.user.phone.match(phoneRegex) ? true : false
-            } else if (attr === this.user.registration) {
+            } else if (attr === this.user.registry) {
                 const registrationRegex = /\d{6}/
-                this.user.isRegistrationInitialized = true
-                this.user.isRegistrationValid = this.user.registration.match(registrationRegex) ? true : false
+                this.user.isRegistryInitialized = true
+                this.user.isRegistryValid = this.user.registry.match(registrationRegex) ? true : false
             }
         },
         clear(){
@@ -122,9 +121,9 @@ export default {
                     { code: 2, name: 'Servidor'},
                     { code: 3, name: 'Outro'} 
                 ],
-                registration: '',
-                isRegistrationInitialized: false,
-                isRegistrationValid: false,
+                registry: '',
+                isRegistryInitialized: false,
+                isRegistryValid: false,
                 course: 'Ciência da Computação',
                 courses: [
                     { code: 1, name: 'Ciência da Computação' },
@@ -142,18 +141,53 @@ export default {
                 cpf: this.user.cpf,
                 phone: this.user.phone,
                 type: this.user.type,
-                registration: this.user.registration,
+                registry: this.user.registry,
                 course: this.user.course,
-                debits: ''
             }
 
-            const db = firebase.database()
-            db.ref('users').push(newUser)
+            console.log(newUser)
+
+            this.$api.mutate({
+                mutation: gql`
+                    mutation (
+                        $name: String!
+                        $cpf: String!
+                        $phone: String!
+                        $type: String!
+                        $registry: String
+                        $course: String
+                    ) {
+                        newCostumer(
+                            data: {
+                                name: $name
+                                cpf: $cpf
+                                phone: $phone
+                                type: $type
+                                registry: $registry
+                                course: $course
+                            }
+                        ) {
+                            id name cpf phone type registry course
+                        }
+                    }
+                `,
+                variables: {
+                    name: newUser.name,
+                    cpf: newUser.cpf,
+                    phone: newUser.phone,
+                    type: newUser.type,
+                    registry: newUser.registry,
+                    course: newUser.course
+                }
+            }).then(resultado => {
+                // console.log(resultado)
+            }).catch(e => {
+                console.log(e)
+            })
+
         }
     },
-    watch: {
-
-    },
+    watch: {},
     mounted() {
         this.$store.commit('contentHeader/changeContentHeader', {
             title: 'Cadastrar Cliente',

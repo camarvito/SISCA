@@ -5,6 +5,7 @@ import RegisterCostumerForm from '../components/costumer-register-form/RegisterC
 import Costumer from '../components/costumer-info/Costumer'
 import Support from '../components/support/Support'
 import LoginScreen from '../components/login-screen/LoginScreen'
+import Home from '../components/home-page/Home'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,9 @@ const routes = [
   },
   {
     path: '/home',
+    component: Home
+  },{
+    path: '/busca-cliente',
     component: TableClients
   },{
     path: '/cadastrar-usuario',

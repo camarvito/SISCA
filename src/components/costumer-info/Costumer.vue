@@ -1,8 +1,8 @@
 <template>
   <div class="costumer__container">
-      <div class="costumer__photo">
+      <!-- <div class="costumer__photo">
           <div class="costumer__photo--img"></div>
-      </div>
+      </div> -->
       <div class="costumer__info">
             <div class="costumer__info--name">{{ costumer.name }}</div>
             <div class="costumer__info--box--container">
@@ -17,22 +17,33 @@
                 <div class="costumer__info--box--container--right">
                     <div class="costumer__info--personal">{{ costumer.cpf }}</div>
                     <div class="costumer__info--personal">{{ costumer.phone }}</div>
-                    <div class="costumer__info--personal">{{ costumer.registration }}</div>
-                    <div class="costumer__info--personal">{{ costumer.course }}</div>
-                    <div class="costumer__info--personal">Dívidas Pendentes</div>
+                    <div class="costumer__info--personal">
+                        <span v-if="costumer.registry">
+                            {{ costumer.registry }}
+                        </span><span v-else>-------</span>
+                    </div>
+                    <div class="costumer__info--personal">
+                        <span v-if="costumer.course">
+                            {{ costumer.course }}
+                        </span><span v-else>-------</span>
+                    </div>
+                    <div class="costumer__info--personal"><!--Corrigir isso-->
+                        <span v-if="costumer.debits">
+                            Há dividas pendentes
+                        </span><span v-else>Não há dividas pendentes</span>
+                    </div>
                 </div>
             </div>
         </div>
       <div class="costumer__debits">
-          <TableDebits />
+          <TableDebits :debits="costumer.debits"/>
+          <!-- :debits="costumer.debits" -->
       </div>
   </div>
 </template>
 
 <script>
-import firebase from 'firebase/app';
-import 'firebase/database';
-
+import gql from 'graphql-tag'
 import TableDebits from './table-debits/TableDebits'
 
 export default {
@@ -43,12 +54,28 @@ export default {
             costumer: ''
         }
     },
+    computed: {},
+    methods: {
+        loadCostumer() {
+            this.$api.query({
+                query: gql`
+                query (
+                    $id: ID!
+                ) {
+                    costumer (filter: {
+                        id: $id
+                    }) { id name cpf phone type registry course debits { id name price date isPaid }}
+                }`,
+                variables: {
+                    id: this.id    
+                }
+            }).then(result => {
+                 this.costumer = result.data.costumer
+            }).catch(e => console.log(e))
+        }
+    },
     mounted() {
-        let ref = firebase.database().ref(`users/${this.id}`)
-        ref.on('value', snapshot => {
-            let currentUser = snapshot.val()
-            this.costumer = currentUser
-        })
+        this.loadCostumer()
 
         this.$store.commit('contentHeader/changeContentHeader', {
             title: 'Dados do Cliente',

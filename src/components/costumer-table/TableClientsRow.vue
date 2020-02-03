@@ -2,7 +2,10 @@
 <tbody>
   <tr class="table__body--row">
     <router-link tag="td" class="table__body--cell" :to="`costumers/${id}`">{{ name }}</router-link>
-    <router-link tag="td" class="table__body--cell" :to="`costumers/${id}`">{{ registration }}</router-link>
+    <router-link tag="td" class="table__body--cell" :to="`costumers/${id}`">
+        <span v-if="registry">{{ registry }}</span>
+        <span v-else>---------</span>
+    </router-link>
     <router-link tag="td" class="table__body--cell" :to="`costumers/${id}`">{{ cpf }}</router-link>
     <td class="table__body--cell">
         <button class="btn btn--include">
@@ -10,7 +13,7 @@
         </button>
     </td>
     <td class="table__body--cell">
-        <button class="btn btn--exclude">
+        <button class="btn btn--exclude" @click="deleteCostumer">
             <svg class="btn--icon">
                 <use xlink:href="@/assets/sprites.svg#bin"></use>
             </svg>
@@ -26,6 +29,8 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
 export default {
     props: {
         id: {
@@ -40,11 +45,31 @@ export default {
             type: String,
             required: true
         },
-        registration: {
+        registry: {
             type: String
         },
     },
-    methods: {}
+    methods: {
+        deleteCostumer(){
+            console.log(this.id)
+            this.$api.mutate({
+                mutation: gql`
+                    mutation (
+                        $id: ID!
+                    ) {
+                        deleteCostumer(filter: {
+                            id: $id
+                        }) { id name cpf phone type }
+                    }
+                `,
+                variables: {
+                    id: this.id
+                }
+            }).then(resultado => {
+                // console.log(resultado)
+            }).catch(e => console.log(e))
+        }
+    }
 }
 </script>
 

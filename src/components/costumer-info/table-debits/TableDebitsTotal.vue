@@ -4,13 +4,28 @@
         <td class="table__body--row--cell"></td>
         <td class="table__body--row--cell"></td>
         <td class="table__body--row--cell"></td>
-        <td class="table__body--row--cell">R$ 7,30</td>
+        <td class="table__body--row--cell">R$ {{ total }}</td>
     </tr>
 </template>
 
 <script>
 export default {
-
+    props: {
+        prices: Array
+    },
+    data() {
+        return {}
+    },
+    computed: {
+        total() {
+            const reducer = (acc, val) => acc + val
+            if (!this.prices[0]) {
+                return 0
+            } else {
+                return this.prices.reduce(reducer).toFixed(2)
+            }
+        }
+    }
 }
 </script>
 

@@ -13,16 +13,13 @@
             <table class="table__frame">
                 <TableClientsHeader />
                 <TableClientsRowErr v-if="!filteredUsers[0]" />
-                <TableClientsRow v-for="user in filteredUsers" :key="user.registration" :name="user.name" :registration="user.registration" :cpf="user.cpf" :id="user.key"/>
+                <TableClientsRow v-for="user in filteredUsers" :key="user.id" :name="user.name" :registry="user.registry" :cpf="user.cpf" :id="user.id"/>
             </table>
         </div>
     </div>
 </template>
 
 <script>
-import firebase from 'firebase/app';
-import 'firebase/database';
-
 import TableClientsHeader from './TableClientsHeader'
 import TableClientsRow from './TableClientsRow'
 import TableClientsRowErr from './TableClientsRowErr'
@@ -47,23 +44,18 @@ export default {
             })
         }
     },
-    mounted() { /* Ao montar o componente, pega do Firebase todos os usuarios existentes e os armazena na instancia */
+    mounted() { 
         this.$store.commit('contentHeader/changeContentHeader', {
             title: 'Buscar Cliente',
             loadClear: false,
             loadReturn: true
         })
+
+        // Resolver esse problema
+        this.$store.state.costumers.loadedCostumers.forEach(costumer => this.users.push(costumer))
         
-        let db = firebase.database().ref('users')
-        db.on('value', snapshot => {
-            snapshot.forEach(childSnapshot => {
-                let user = childSnapshot.val()
-                user.key = childSnapshot.key /* Adiciona o atributo key, uma chave unica gerada pelo firebase */
-                this.users.push(user)
-            })
-        })
     }
-};
+}
 </script>
 
 <style lang="scss" scoped>

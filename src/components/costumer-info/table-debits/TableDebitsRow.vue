@@ -2,13 +2,13 @@
     <tr class="table__body--row" :class="{ 'even' : this.index % 2 == 0, 'odd' : this.index % 2 != 0, 'table__body--row--paid' : isPaid}">
         <td class="table__body--row--cell">{{ date }}</td>
         <td class="table__body--row--cell">{{ name }}</td>
-        <td class="table__body--row--cell">R$ {{ price }}</td>
+        <td class="table__body--row--cell">R$ {{ price.toFixed(2) }}</td>
         <td class="table__body--row--cell">
             <span v-show="isPaid">Pago</span>
             <span v-show="!isPaid">Não pago</span>
         </td>
         <td class="table__body--row--cell">
-            <button class="btn btn--pay" :class="{'btn--paid': isPaid}" @click="isPaid = !isPaid">
+            <button class="btn btn--pay" :class="{'btn--paid': isPaid}" @click="changePayState">
                 <svg class="icon">
                     <use xlink:href="@/assets/sprites.svg#dollar-symbol"></use>
                 </svg>
@@ -23,8 +23,14 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
 export default {
     props: {
+        debitId: {
+            type: String,
+            required: true
+        },
         index: {
             type: Number,
             required: true
@@ -46,7 +52,35 @@ export default {
             required: true
         }
     },
-    methods: {}
+    computed: {},
+    methods: {
+        changePayState(){
+            this.isPaid = !this.isPaid
+
+            this.$api.mutate({
+                mutation: gql`
+                    mutation (
+                        $id: ID!
+                        $isPaid: Boolean!
+                    ) {
+                        changeDebit(
+                            filter: {
+                                id: $id
+                            }
+                            data: {
+                                isPaid: $isPaid
+                            }
+                        ) { name price date isPaid }
+                    }
+                `,
+                variables: {
+                    id: this.debitId,
+                    isPaid: this.isPaid
+                }
+            }).then(result => console.log(result))
+            .catch(e => console.log(e))
+        }
+    }
 }
 </script>
 
