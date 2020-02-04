@@ -9,9 +9,7 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style lang="scss" scoped>
@@ -26,7 +24,7 @@ export default {
             text-align: center;
             text-transform: uppercase;
             padding: 1.4rem;
-            color: #FFF;
+            color: #fff;
         }
     }
 }

@@ -1,10 +1,18 @@
 <template>
     <div>
         <div class="search__container">
-            <input type="text" class="search__bar" placeholder="Digite o nome do cliente" v-model="inputName" @input="filterUsers" />
+            <input
+                type="text"
+                class="search__bar"
+                placeholder="Digite o nome do cliente"
+                v-model="inputName"
+                @input="filterUsers"
+            />
             <button class="search__bar__button">
                 <svg class="search__bar__button--icon">
-                    <use xlink:href="@/assets/sprites.svg#magnifying-glass"></use>
+                    <use
+                        xlink:href="@/assets/sprites.svg#magnifying-glass"
+                    ></use>
                 </svg>
             </button>
         </div>
@@ -13,49 +21,60 @@
             <table class="table__frame">
                 <TableClientsHeader />
                 <TableClientsRowErr v-if="!filteredUsers[0]" />
-                <TableClientsRow v-for="user in filteredUsers" :key="user.id" :name="user.name" :registry="user.registry" :cpf="user.cpf" :id="user.id"/>
+                <TableClientsRow
+                    v-for="user in filteredUsers"
+                    :key="user.id"
+                    :name="user.name"
+                    :registry="user.registry"
+                    :cpf="user.cpf"
+                    :id="user.id"
+                />
             </table>
         </div>
     </div>
 </template>
 
 <script>
-import TableClientsHeader from './TableClientsHeader'
-import TableClientsRow from './TableClientsRow'
-import TableClientsRowErr from './TableClientsRowErr'
+import TableClientsHeader from "./TableClientsHeader";
+import TableClientsRow from "./TableClientsRow";
+import TableClientsRowErr from "./TableClientsRowErr";
 
 export default {
     components: { TableClientsHeader, TableClientsRow, TableClientsRowErr },
     data() {
         return {
-            inputName: '',
+            inputName: "",
             users: [],
             filteredUsers: []
-        }
+        };
     },
     methods: {
-        filterUsers(){
-            this.filteredUsers = this.users.filter(user => {
-                // if (!this.inputName) {
-                //     return false
-                // } else {
-                    return user.name.toLowerCase().startsWith(this.inputName.toLowerCase())
+        filterUsers() {
+            this.filteredUsers = this.users.filter(
+                user =>
+                    // if (!this.inputName) {
+                    //     return false
+                    // } else {
+                    user.name
+                        .toLowerCase()
+                        .startsWith(this.inputName.toLowerCase())
                 // }
-            })
+            );
         }
     },
-    mounted() { 
-        this.$store.commit('contentHeader/changeContentHeader', {
-            title: 'Buscar Cliente',
+    mounted() {
+        this.$store.commit("contentHeader/changeContentHeader", {
+            title: "Buscar Cliente",
             loadClear: false,
             loadReturn: true
-        })
+        });
 
         // Resolver esse problema
-        this.$store.state.costumers.loadedCostumers.forEach(costumer => this.users.push(costumer))
-        
+        this.$store.state.costumers.loadedCostumers.forEach(costumer =>
+            this.users.push(costumer)
+        );
     }
-}
+};
 </script>
 
 <style lang="scss" scoped>

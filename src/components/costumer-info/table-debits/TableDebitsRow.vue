@@ -1,5 +1,12 @@
 <template>
-    <tr class="table__body--row" :class="{ 'even' : this.index % 2 == 0, 'odd' : this.index % 2 != 0, 'table__body--row--paid' : isPaid}">
+    <tr
+        class="table__body--row"
+        :class="{
+            even: this.index % 2 == 0,
+            odd: this.index % 2 != 0,
+            'table__body--row--paid': isPaid
+        }"
+    >
         <td class="table__body--row--cell">{{ date }}</td>
         <td class="table__body--row--cell">{{ name }}</td>
         <td class="table__body--row--cell">R$ {{ price.toFixed(2) }}</td>
@@ -8,7 +15,11 @@
             <span v-show="!isPaid">Não pago</span>
         </td>
         <td class="table__body--row--cell">
-            <button class="btn btn--pay" :class="{'btn--paid': isPaid}" @click="changePayState">
+            <button
+                class="btn btn--pay"
+                :class="{ 'btn--paid': isPaid }"
+                @click="changePayState"
+            >
                 <svg class="icon">
                     <use xlink:href="@/assets/sprites.svg#dollar-symbol"></use>
                 </svg>
@@ -23,7 +34,7 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
+import gql from "graphql-tag";
 
 export default {
     props: {
@@ -54,34 +65,34 @@ export default {
     },
     computed: {},
     methods: {
-        changePayState(){
-            this.isPaid = !this.isPaid
+        changePayState() {
+            this.isPaid = !this.isPaid;
 
-            this.$api.mutate({
-                mutation: gql`
-                    mutation (
-                        $id: ID!
-                        $isPaid: Boolean!
-                    ) {
-                        changeDebit(
-                            filter: {
-                                id: $id
+            this.$api
+                .mutate({
+                    mutation: gql`
+                        mutation($id: ID!, $isPaid: Boolean!) {
+                            changeDebit(
+                                filter: { id: $id }
+                                data: { isPaid: $isPaid }
+                            ) {
+                                name
+                                price
+                                date
+                                isPaid
                             }
-                            data: {
-                                isPaid: $isPaid
-                            }
-                        ) { name price date isPaid }
+                        }
+                    `,
+                    variables: {
+                        id: this.debitId,
+                        isPaid: this.isPaid
                     }
-                `,
-                variables: {
-                    id: this.debitId,
-                    isPaid: this.isPaid
-                }
-            }).then(result => console.log(result))
-            .catch(e => console.log(e))
+                })
+                .then(result => console.log(result))
+                .catch(e => console.log(e));
         }
     }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -99,7 +110,7 @@ export default {
 
         &--paid {
             background-color: rgb(46, 204, 113) !important;
-            color: #FFF !important;
+            color: #fff !important;
         }
     }
 }
@@ -115,15 +126,15 @@ export default {
 .btn {
     display: inline-block;
     border: 1px solid transparent;
-    padding: .7rem .7rem;
-    margin: 0 .5rem;
-    border-radius: .25rem;
-    transition: color .15s;
+    padding: 0.7rem 0.7rem;
+    margin: 0 0.5rem;
+    border-radius: 0.25rem;
+    transition: color 0.15s;
     cursor: pointer;
 
     &--pay {
         background-color: rgb(46, 204, 113);
-        box-shadow: 0px 0px 2px .2px rgba(0,0,0,0.35);
+        box-shadow: 0px 0px 2px 0.2px rgba(0, 0, 0, 0.35);
         outline: none;
 
         &:active {
@@ -133,7 +144,7 @@ export default {
 
     &--exclude {
         background-color: #e74c3c;
-        box-shadow: 0px 0px 2px .2px rgba(0,0,0,0.35);
+        box-shadow: 0px 0px 2px 0.2px rgba(0, 0, 0, 0.35);
         outline: none;
 
         &:active {
@@ -143,7 +154,7 @@ export default {
 
     &--paid {
         background-color: rgb(169, 175, 179);
-        box-shadow: 0px 0px 2px .2px rgba(0,0,0,0.35);
+        box-shadow: 0px 0px 2px 0.2px rgba(0, 0, 0, 0.35);
         outline: none;
 
         &:active {
@@ -155,6 +166,6 @@ export default {
 .icon {
     height: 1.3rem;
     width: 1.3rem;
-    fill: #FFF;
+    fill: #fff;
 }
 </style>

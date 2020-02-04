@@ -11,9 +11,7 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style lang="scss" scoped>
@@ -25,7 +23,7 @@ export default {
         text-align: initial;
         border: 1px solid #dee2e6;
         padding: 1rem;
-        width: 20%;  
+        width: 20%;
     }
 }
 </style>

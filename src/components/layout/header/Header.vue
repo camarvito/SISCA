@@ -1,16 +1,24 @@
 <template>
-  <header>
+    <header>
         <nav class="navbar">
-            <h2><span class="navbar__acronym">SISCA</span> | <span class="navbar__title">Sistema da Cantina</span></h2>
+            <h2>
+                <span class="navbar__acronym">SISCA</span> |
+                <span class="navbar__title">Sistema da Cantina</span>
+            </h2>
             <span class="navbar__mode">Desenvolvimento</span>
-            
+
             <div class="navbar__user-login">
                 <svg class="navbar__user-login--icon">
                     <use xlink:href="@/assets/sprites.svg#user"></use>
                 </svg>
 
                 <h2>Victor Camargo</h2>
-                <div class="navbar__user-login--drop" @click="isMenuClicked = !isMenuClicked">&#9662;</div>
+                <div
+                    class="navbar__user-login--drop"
+                    @click="isMenuClicked = !isMenuClicked"
+                >
+                    &#9662;
+                </div>
             </div>
         </nav>
         <ul v-show="isMenuClicked" class="navbar__options">
@@ -25,9 +33,9 @@ export default {
     data() {
         return {
             isMenuClicked: false
-        }
+        };
     }
-}
+};
 </script>
 
 <style lang="scss">
@@ -39,7 +47,7 @@ export default {
     padding: 0 2rem;
     align-items: center;
     background-color: #2980b9;
-    
+
     color: white;
 
     &__acronym {
@@ -47,10 +55,10 @@ export default {
     }
 
     &__mode {
-        font-size: .95rem;
+        font-size: 0.95rem;
         font-weight: bold;
-        padding: .3rem 1.5rem;
-        color: #FFF;
+        padding: 0.3rem 1.5rem;
+        color: #fff;
         background-color: #6ab04c;
         text-transform: uppercase;
         border-radius: 50px;
@@ -70,14 +78,14 @@ export default {
         &--icon {
             height: 1.8rem;
             width: 1.8rem;
-            fill: #FFF;
+            fill: #fff;
             margin-right: 1rem;
         }
 
         &--drop {
             cursor: pointer;
             font-size: 1.6rem;
-            margin-left: .5rem;
+            margin-left: 0.5rem;
         }
     }
 
@@ -87,8 +95,8 @@ export default {
         right: 2rem;
         padding: 0;
         margin: 0;
-        background-color: #FFF;
-        border: 1px solid rgba(0,0,0,.15);
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.15);
         border-radius: 4px;
 
         &--li {
@@ -97,7 +105,7 @@ export default {
             padding: 1rem 4rem;
             cursor: pointer;
             &:hover {
-                background-color: #DDD;
+                background-color: #ddd;
             }
         }
     }

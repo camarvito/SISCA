@@ -3,10 +3,6 @@ export default {
     state: {
         loadedCostumers: []
     },
-    mutations: {
-
-    },
-    actions: {
-
-    }
-}
+    mutations: {},
+    actions: {}
+};

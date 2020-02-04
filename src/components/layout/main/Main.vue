@@ -1,21 +1,23 @@
 <template>
     <main class="main__layout">
-        <Sidebar @itemSelected="itemSelected($event)"/><!--:sidebarItems="sidebarItems"-->
+        <Sidebar
+            @itemSelected="itemSelected($event)"
+        /><!--:sidebarItems="sidebarItems"-->
         <Content />
     </main>
 </template>
 
 <script>
-import Sidebar from './sidebar/Sidebar'
-import Content from './content/Content'
+import Sidebar from "./sidebar/Sidebar";
+import Content from "./content/Content";
 
 export default {
     data() {
-        return {}
+        return {};
     },
     methods: {},
-    components: { Sidebar, Content },
-}
+    components: { Sidebar, Content }
+};
 </script>
 
 <style lang="scss">

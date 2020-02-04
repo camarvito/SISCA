@@ -1,27 +1,37 @@
 <template>
-  <div class="sidebar">
-            <ul>
-                <SidebarItem v-for="(item, index) in sidebarItems" :key="index" :name="item.name" :icon="item.icon" :subItems="item.subItems" :path="item.path" :isSelected="item.isSelected" :isClickable="item.isClickable" @itemSelected="itemSelected($event)"/>
-            </ul>
-        </div>
+    <div class="sidebar">
+        <ul>
+            <SidebarItem
+                v-for="(item, index) in sidebarItems"
+                :key="index"
+                :name="item.name"
+                :icon="item.icon"
+                :subItems="item.subItems"
+                :path="item.path"
+                :isSelected="item.isSelected"
+                :isClickable="item.isClickable"
+                @itemSelected="itemSelected($event)"
+            />
+        </ul>
+    </div>
 </template>
 
 <script>
-import SidebarItem from './SidebarItem'
+import SidebarItem from "./SidebarItem";
 
 export default {
     computed: {
         sidebarItems() {
-            return this.$store.state.sidebar.sidebarItems
+            return this.$store.state.sidebar.sidebarItems;
         }
     },
     methods: {
         itemSelected(name) {
-            this.$store.commit('sidebar/itemSelected', name)
+            this.$store.commit("sidebar/itemSelected", name);
         }
     },
-    components: { SidebarItem },
-}
+    components: { SidebarItem }
+};
 </script>
 
 <style lang="scss">

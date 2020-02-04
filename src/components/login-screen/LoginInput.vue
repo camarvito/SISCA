@@ -1,10 +1,10 @@
 <template>
     <div class="login__box">
         <div>
-            <input type="text" placeholder="Usuário">
+            <input type="text" placeholder="Usuário" />
         </div>
         <div>
-            <input type="password" placeholder="Senha">
+            <input type="password" placeholder="Senha" />
         </div>
         <div>
             <button>Login</button>
@@ -13,9 +13,7 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style lang="scss" scoped>
@@ -23,8 +21,7 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 4rem;
-    background-color: #FFF;
-    border: 1px solid rgba(0,0,0,.15);
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
 }
-
 </style>

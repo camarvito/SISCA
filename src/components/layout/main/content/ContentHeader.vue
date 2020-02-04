@@ -1,48 +1,66 @@
 <template>
-  <div class="content__header">
+    <div class="content__header">
         <div class="content__header--title">{{ title }}</div>
-            <div class="content__header--options">
-                <svg v-if="loadClear" class="content__header--options--icon" @click="setAnimation(); clear();" :class="{ animation__rotate: isRotating }"><use xlink:href="@/assets/sprites.svg#refresh-button"></use></svg>
-                <svg v-if="loadReturn" class="content__header--options--icon" @click="goBack()"><use xlink:href="@/assets/sprites.svg#back-arrow"></use></svg>
-            </div>
+        <div class="content__header--options">
+            <svg
+                v-if="loadClear"
+                class="content__header--options--icon"
+                @click="
+                    setAnimation();
+                    clear();
+                "
+                :class="{ animation__rotate: isRotating }"
+            >
+                <use xlink:href="@/assets/sprites.svg#refresh-button"></use>
+            </svg>
+            <svg
+                v-if="loadReturn"
+                class="content__header--options--icon"
+                @click="goBack()"
+            >
+                <use xlink:href="@/assets/sprites.svg#back-arrow"></use>
+            </svg>
         </div>
+    </div>
 </template>
 
 <script>
 export default {
-    data(){
+    data() {
         return {
             isRotating: false
-        }
+        };
     },
     computed: {
         title() {
-            return this.$store.state.contentHeader.title
+            return this.$store.state.contentHeader.title;
         },
         loadClear() {
-            return this.$store.state.contentHeader.clear
+            return this.$store.state.contentHeader.clear;
         },
         loadReturn() {
-            return this.$store.state.contentHeader.title
-        }    
+            return this.$store.state.contentHeader.title;
+        }
     },
     methods: {
-        setAnimation(){ /* Como não conseguir animar o click usando apenas o CSS programei uma função simples */
-            this.isRotating = true
+        setAnimation() {
+            /* Como não conseguir animar o click usando apenas o CSS programei uma função simples */
+            this.isRotating = true;
             setTimeout(() => {
-                this.isRotating = false
-            }, 1000)
+                this.isRotating = false;
+            }, 1000);
         },
-        clear(){ // Função que emite o evento para limpar os dados do formulário
+        clear() {
+            // Função que emite o evento para limpar os dados do formulário
             // this.$store.commit('')
-            console.log('implementar')
+            console.log("implementar");
         },
         goBack() {
             /* window.history.back() - Isso bugará o "Active" da Sidebar. */
-            console.log('implementar')
+            console.log("implementar");
         }
     }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -78,12 +96,11 @@ export default {
     }
 }
 
-
 /* Animations */
 
 .animation__rotate {
     animation: rotate;
-    animation-duration: .5s;
+    animation-duration: 0.5s;
 }
 
 @keyframes rotate {
@@ -94,5 +111,4 @@ export default {
         transform: rotate(360deg);
     }
 }
-
 </style>

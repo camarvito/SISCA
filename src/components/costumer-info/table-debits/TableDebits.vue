@@ -1,10 +1,19 @@
 <template>
-  <table class="table__frame">
+    <table class="table__frame">
         <thead>
             <TableDebitsHeader />
         </thead>
         <tbody>
-            <TableDebitsRow v-for="(debit, index) in debits" :key="index" :debitId="debit.id" :name="debit.name" :date="debit.date" :price="debit.price" :index="index" :isPaid="debit.isPaid"/>
+            <TableDebitsRow
+                v-for="(debit, index) in debits"
+                :key="index"
+                :debitId="debit.id"
+                :name="debit.name"
+                :date="debit.date"
+                :price="debit.price"
+                :index="index"
+                :isPaid="debit.isPaid"
+            />
             <TableDebitsTotal :prices="getDebits" />
             <TableDebitsInput />
         </tbody>
@@ -14,10 +23,10 @@
 <script>
 // import gql from 'graphql-tag'
 
-import TableDebitsHeader from './TableDebitsHeader'
-import TableDebitsRow from './TableDebitsRow'
-import TableDebitsInput from './TableDebitsInput'
-import TableDebitsTotal from './TableDebitsTotal'
+import TableDebitsHeader from "./TableDebitsHeader";
+import TableDebitsRow from "./TableDebitsRow";
+import TableDebitsInput from "./TableDebitsInput";
+import TableDebitsTotal from "./TableDebitsTotal";
 
 export default {
     props: {
@@ -26,51 +35,43 @@ export default {
             required: false
         }
     },
-    components: { 
-        TableDebitsHeader, 
-        TableDebitsRow, 
+    components: {
+        TableDebitsHeader,
+        TableDebitsRow,
         TableDebitsInput,
-        TableDebitsTotal 
+        TableDebitsTotal
     },
     data() {
         return {
-            userId: this.$route.params.id,
-        }
+            userId: this.$route.params.id
+        };
     },
     computed: {
         isInputEnable() {
-            if (this.$store
-                    .state
-                    .tableDebits
-                    .currentState == 1 || 
-                this.$store
-                    .state
-                    .tableDebits
-                    .currentState == 2){
-                        return true
-            } else {
-                return false
+            if (
+                this.$store.state.tableDebits.currentState == 1 ||
+                this.$store.state.tableDebits.currentState == 2
+            ) {
+                return true;
             }
+            return false;
         },
         getDebits() {
-            const prices = []
+            const prices = [];
 
             if (!this.debits) {
-                return prices
-            } else {
-                this.debits.forEach(debit => {
-                    prices.push(debit.price)    
-                })
-
-                return prices
+                return prices;
             }
+            this.debits.forEach(debit => {
+                prices.push(debit.price);
+            });
+
+            return prices;
         }
     },
-    methods: {
-    },
-    mounted() {
-    }
-}
+    methods: {},
+    mounted() {}
+};
 </script>
 
 <style lang="scss" scoped>
