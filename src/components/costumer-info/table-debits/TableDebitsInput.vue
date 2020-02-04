@@ -22,8 +22,11 @@
 </template>
 
 <script>
-import gql from 'graphql-tag';
+import { createNamespacedHelpers } from 'vuex';
 
+const { mapActions: costumerDebitsActions } = createNamespacedHelpers(
+  'costumerDebits'
+);
 // import { TheMask } from 'vue-the-mask';
 
 export default {
@@ -36,6 +39,7 @@ export default {
     };
   },
   methods: {
+    ...costumerDebitsActions(['storeDebit']),
     currentDate() {
       const nowDate = Date(Date.now()).toString();
       const dateRegExp = /\w{3}\s\d{2}\s\d{4}\s\d{2}:\d{2}:\d{2}/i;
@@ -51,51 +55,20 @@ export default {
       ) {
         // function
 
+        const { id } = this.$route.params;
+
         const debit = {
+          id,
           name: this.name,
           price: parseFloat(this.price.match(debitPriceRegex)[0]),
           date: this.currentDate()[0],
           isPaid: false,
         };
 
-        await this.$api
-          .mutate({
-            mutation: gql`
-              mutation(
-                $id: ID!
-                $name: String!
-                $price: Float!
-                $date: String!
-                $isPaid: Boolean!
-              ) {
-                newDebit(
-                  data: {
-                    costumerId: $id
-                    name: $name
-                    price: $price
-                    date: $date
-                    isPaid: $isPaid
-                  }
-                ) {
-                  name
-                  price
-                  date
-                }
-              }
-            `,
-            variables: {
-              id: this.id,
-              name: debit.name,
-              price: debit.price,
-              date: debit.date,
-            },
-          })
-          .then(result => {
-            console.log(result);
-            // Implementar
-            // this.$store.dispatch('tableDebits/loadDebits')
-          })
-          .catch(e => console.log(e));
+        this.storeDebit(debit);
+        // console.log(debit);
+
+        // this.storeDebit({})
       } else {
         console.log('Formulário errado!');
       }

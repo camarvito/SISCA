@@ -6,15 +6,11 @@
     <tbody>
       <TableDebitsRow
         v-for="(debit, index) in debits"
-        :key="index"
-        :debitId="debit.id"
-        :name="debit.name"
-        :date="debit.date"
-        :price="debit.price"
+        :key="debit.id"
         :index="index"
-        :isPaid="debit.isPaid"
+        :debit="debit"
       />
-      <TableDebitsTotal :prices="getDebits" />
+      <TableDebitsTotal />
       <TableDebitsInput />
     </tbody>
   </table>

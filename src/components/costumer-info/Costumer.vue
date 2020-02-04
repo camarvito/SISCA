@@ -48,67 +48,38 @@
       </div>
     </div>
     <div class="costumer__debits">
-      <TableDebits :debits="costumer.debits" />
+      <TableDebits :debits="debits" />
       <!-- :debits="costumer.debits" -->
     </div>
   </div>
 </template>
 
 <script>
-import gql from 'graphql-tag';
+import { createNamespacedHelpers } from 'vuex';
 import TableDebits from './table-debits/TableDebits.vue';
+
+const {
+  mapState: costumerDebitsState,
+  mapActions: costumerDebitsActions,
+} = createNamespacedHelpers('costumerDebits');
 
 export default {
   components: { TableDebits },
-  data() {
-    return {
-      id: this.$route.params.id,
-      costumer: '',
-    };
+  computed: {
+    ...costumerDebitsState(['costumer', 'debits']),
   },
-  computed: {},
   methods: {
-    loadCostumer() {
-      this.$api
-        .query({
-          query: gql`
-            query($id: ID!) {
-              costumer(filter: { id: $id }) {
-                id
-                name
-                cpf
-                phone
-                type
-                registry
-                course
-                debits {
-                  id
-                  name
-                  price
-                  date
-                  isPaid
-                }
-              }
-            }
-          `,
-          variables: {
-            id: this.id,
-          },
-        })
-        .then(result => {
-          this.costumer = result.data.costumer;
-        })
-        .catch(e => console.log(e));
-    },
+    ...costumerDebitsActions(['fetchDebits']),
   },
   mounted() {
-    this.loadCostumer();
+    const { id } = this.$route.params;
+    this.fetchDebits(id);
 
-    // this.$store.commit('contentHeader/changeContentHeader', {
-    //   title: 'Dados do Cliente',
-    //   loadClear: false,
-    //   loadReturn: true,
-    // });
+    this.$store.commit('changeContentHeader', {
+      title: 'Dados do Cliente',
+      loadClear: false,
+      loadReturn: true,
+    });
   },
 };
 </script>
