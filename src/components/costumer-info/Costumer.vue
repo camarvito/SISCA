@@ -58,15 +58,15 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
-import TableDebits from "./table-debits/TableDebits";
+import gql from 'graphql-tag';
+import TableDebits from './table-debits/TableDebits';
 
 export default {
     components: { TableDebits },
     data() {
         return {
             id: this.$route.params.id,
-            costumer: ""
+            costumer: '',
         };
     },
     computed: {},
@@ -95,24 +95,24 @@ export default {
                         }
                     `,
                     variables: {
-                        id: this.id
-                    }
+                        id: this.id,
+                    },
                 })
                 .then(result => {
                     this.costumer = result.data.costumer;
                 })
                 .catch(e => console.log(e));
-        }
+        },
     },
     mounted() {
         this.loadCostumer();
 
-        this.$store.commit("contentHeader/changeContentHeader", {
-            title: "Dados do Cliente",
+        this.$store.commit('contentHeader/changeContentHeader', {
+            title: 'Dados do Cliente',
             loadClear: false,
-            loadReturn: true
+            loadReturn: true,
         });
-    }
+    },
 };
 </script>
 

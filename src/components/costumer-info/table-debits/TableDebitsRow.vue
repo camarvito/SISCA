@@ -4,7 +4,7 @@
         :class="{
             even: this.index % 2 == 0,
             odd: this.index % 2 != 0,
-            'table__body--row--paid': isPaid
+            'table__body--row--paid': isPaid,
         }"
     >
         <td class="table__body--row--cell">{{ date }}</td>
@@ -34,34 +34,34 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export default {
     props: {
         debitId: {
             type: String,
-            required: true
+            required: true,
         },
         index: {
             type: Number,
-            required: true
+            required: true,
         },
         date: {
             type: String,
-            required: true
+            required: true,
         },
         name: {
             type: String,
-            required: true
+            required: true,
         },
         price: {
             type: Number,
-            required: true
+            required: true,
         },
         isPaid: {
             type: Boolean,
-            required: true
-        }
+            required: true,
+        },
     },
     computed: {},
     methods: {
@@ -85,13 +85,13 @@ export default {
                     `,
                     variables: {
                         id: this.debitId,
-                        isPaid: this.isPaid
-                    }
+                        isPaid: this.isPaid,
+                    },
                 })
                 .then(result => console.log(result))
                 .catch(e => console.log(e));
-        }
-    }
+        },
+    },
 };
 </script>
 

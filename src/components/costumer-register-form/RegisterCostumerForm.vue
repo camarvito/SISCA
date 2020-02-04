@@ -8,7 +8,7 @@
                     class="input__text--label"
                     :class="{
                         'input__correct--text': user.isNameValid,
-                        'input__wrong--text': user.isNameInitialized
+                        'input__wrong--text': user.isNameInitialized,
                     }"
                     >Nome Completo</label
                 >
@@ -20,7 +20,7 @@
                         input__correct: user.isNameValid,
                         'input__correct--text': user.isNameValid,
                         input__wrong: user.isNameInitialized,
-                        'input__wrong--text': user.isNameInitialized
+                        'input__wrong--text': user.isNameInitialized,
                     }"
                     v-model.trim="user.name"
                     @blur="checkForm(user.name)"
@@ -33,7 +33,7 @@
                     class="input__text--label"
                     :class="{
                         'input__correct--text': user.isCpfValid,
-                        'input__wrong--text': user.isCpfInitialized
+                        'input__wrong--text': user.isCpfInitialized,
                     }"
                     >CPF</label
                 >
@@ -45,7 +45,7 @@
                         input__correct: user.isCpfValid,
                         'input__correct--text': user.isCpfValid,
                         input__wrong: user.isCpfInitialized,
-                        'input__wrong--text': user.isCpfInitialized
+                        'input__wrong--text': user.isCpfInitialized,
                     }"
                     v-mask="'###.###.###-##'"
                     v-model.trim="user.cpf"
@@ -59,7 +59,7 @@
                     class="input__text--label"
                     :class="{
                         'input__correct--text': user.isPhoneValid,
-                        'input__wrong--text': user.isPhoneInitialized
+                        'input__wrong--text': user.isPhoneInitialized,
                     }"
                     >Telefone para contato</label
                 >
@@ -71,7 +71,7 @@
                         input__correct: user.isPhoneValid,
                         'input__correct--text': user.isPhoneValid,
                         input__wrong: user.isPhoneInitialized,
-                        'input__wrong--text': user.isPhoneInitialized
+                        'input__wrong--text': user.isPhoneInitialized,
                     }"
                     v-mask="'(##) #####-####'"
                     v-model.trim="user.phone"
@@ -97,7 +97,7 @@
                     class="input__text--label"
                     :class="{
                         'input__correct--text': user.isRegistryValid,
-                        'input__wrong--text': user.isRegistryInitialized
+                        'input__wrong--text': user.isRegistryInitialized,
                     }"
                     >Matricula</label
                 >
@@ -109,7 +109,7 @@
                         input__correct: user.isRegistryValid,
                         'input__correct--text': user.isRegistryValid,
                         input__wrong: user.isRegistryInitialized,
-                        'input__wrong--text': user.isRegistryInitialized
+                        'input__wrong--text': user.isRegistryInitialized,
                     }"
                     v-mask="'######'"
                     v-model.trim="user.registry"
@@ -142,43 +142,43 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
-import { TheMask } from "vue-the-mask";
+// import { TheMask } from 'vue-the-mask';
 
 export default {
-    components: { TheMask },
+    // components: { TheMask },
     data() {
         return {
             user: {
-                name: "",
+                name: '',
                 isNameInitialized: false,
                 isNameValid: false,
-                cpf: "",
+                cpf: '',
                 isCpfInitialized: false,
                 isCpfValid: false,
-                phone: "",
+                phone: '',
                 isPhoneInitialized: false,
                 isPhoneValid: false,
-                type: "Aluno",
+                type: 'Aluno',
                 types: [
-                    { code: 1, name: "Aluno" },
-                    { code: 2, name: "Servidor" },
-                    { code: 3, name: "Outro" }
+                    { code: 1, name: 'Aluno' },
+                    { code: 2, name: 'Servidor' },
+                    { code: 3, name: 'Outro' },
                 ],
-                registry: "",
+                registry: '',
                 isRegistryInitialized: false,
                 isRegistryValid: false,
-                course: "Ciência da Computação",
+                course: 'Ciência da Computação',
                 courses: [
-                    { code: 1, name: "Ciência da Computação" },
-                    { code: 2, name: "Design Digital" },
-                    { code: 3, name: "Engenharia da Computação" },
-                    { code: 4, name: "Engenharia de Software" },
-                    { code: 5, name: "Redes de Computadores" },
-                    { code: 6, name: "Sistemas de Informação" }
-                ]
-            }
+                    { code: 1, name: 'Ciência da Computação' },
+                    { code: 2, name: 'Design Digital' },
+                    { code: 3, name: 'Engenharia da Computação' },
+                    { code: 4, name: 'Engenharia de Software' },
+                    { code: 5, name: 'Redes de Computadores' },
+                    { code: 6, name: 'Sistemas de Informação' },
+                ],
+            },
         };
     },
     methods: {
@@ -188,10 +188,12 @@ export default {
                 this.user.isNameInitialized = true;
                 this.user.isNameValid = !!this.user.name.match(nameRegex);
             } else if (attr === this.user.cpf) {
+              // eslint-disable-next-line no-useless-escape
                 const cpfRegex = /\d{3}\.\d{3}\.\d{3}\-\d{2}/;
                 this.user.isCpfInitialized = true;
                 this.user.isCpfValid = !!this.user.cpf.match(cpfRegex);
             } else if (attr === this.user.phone) {
+                // eslint-disable-next-line no-useless-escape
                 const phoneRegex = /\(\d{2}\)\s\d{5}\-\d{4}/;
                 this.user.isPhoneInitialized = true;
                 this.user.isPhoneValid = !!this.user.phone.match(phoneRegex);
@@ -205,33 +207,33 @@ export default {
         },
         clear() {
             this.user = {
-                name: "",
+                name: '',
                 isNameInitialized: false,
                 isNameValid: false,
-                cpf: "",
+                cpf: '',
                 isCpfInitialized: false,
                 isCpfValid: false,
-                phone: "",
+                phone: '',
                 isPhoneInitialized: false,
                 isPhoneValid: false,
-                type: "Aluno",
+                type: 'Aluno',
                 types: [
-                    { code: 1, name: "Aluno" },
-                    { code: 2, name: "Servidor" },
-                    { code: 3, name: "Outro" }
+                    { code: 1, name: 'Aluno' },
+                    { code: 2, name: 'Servidor' },
+                    { code: 3, name: 'Outro' },
                 ],
-                registry: "",
+                registry: '',
                 isRegistryInitialized: false,
                 isRegistryValid: false,
-                course: "Ciência da Computação",
+                course: 'Ciência da Computação',
                 courses: [
-                    { code: 1, name: "Ciência da Computação" },
-                    { code: 2, name: "Design Digital" },
-                    { code: 3, name: "Engenharia da Computação" },
-                    { code: 4, name: "Engenharia de Software" },
-                    { code: 5, name: "Redes de Computadores" },
-                    { code: 6, name: "Sistemas de Informação" }
-                ]
+                    { code: 1, name: 'Ciência da Computação' },
+                    { code: 2, name: 'Design Digital' },
+                    { code: 3, name: 'Engenharia da Computação' },
+                    { code: 4, name: 'Engenharia de Software' },
+                    { code: 5, name: 'Redes de Computadores' },
+                    { code: 6, name: 'Sistemas de Informação' },
+                ],
             };
         },
         send() {
@@ -241,7 +243,7 @@ export default {
                 phone: this.user.phone,
                 type: this.user.type,
                 registry: this.user.registry,
-                course: this.user.course
+                course: this.user.course,
             };
 
             console.log(newUser);
@@ -283,25 +285,25 @@ export default {
                         phone: newUser.phone,
                         type: newUser.type,
                         registry: newUser.registry,
-                        course: newUser.course
-                    }
+                        course: newUser.course,
+                    },
                 })
                 .then(resultado => {
-                    // console.log(resultado)
+                    console.log(resultado)
                 })
                 .catch(e => {
                     console.log(e);
                 });
-        }
+        },
     },
     watch: {},
     mounted() {
-        this.$store.commit("contentHeader/changeContentHeader", {
-            title: "Cadastrar Cliente",
+        this.$store.commit('contentHeader/changeContentHeader', {
+            title: 'Cadastrar Cliente',
             loadClear: true,
-            loadReturn: true
+            loadReturn: true,
         });
-    }
+    },
 };
 </script>
 

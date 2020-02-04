@@ -32,9 +32,9 @@
 export default {
     data() {
         return {
-            isMenuClicked: false
+            isMenuClicked: false,
         };
-    }
+    },
 };
 </script>
 

@@ -45,25 +45,25 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export default {
     props: {
         id: {
             type: String,
-            required: true
+            required: true,
         },
         name: {
             type: String,
-            required: true
+            required: true,
         },
         cpf: {
             type: String,
-            required: true
+            required: true,
         },
         registry: {
-            type: String
-        }
+            type: String,
+        },
     },
     methods: {
         deleteCostumer() {
@@ -82,15 +82,15 @@ export default {
                         }
                     `,
                     variables: {
-                        id: this.id
-                    }
+                        id: this.id,
+                    },
                 })
                 .then(resultado => {
                     // console.log(resultado)
                 })
                 .catch(e => console.log(e));
-        }
-    }
+        },
+    },
 };
 </script>
 

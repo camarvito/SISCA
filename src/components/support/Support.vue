@@ -39,12 +39,12 @@
 <script>
 export default {
     mounted() {
-        this.$store.commit("contentHeader/changeContentHeader", {
-            title: "Sobre",
+        this.$store.commit('contentHeader/changeContentHeader', {
+            title: 'Sobre',
             loadClear: false,
-            loadReturn: true
+            loadReturn: true,
         });
-    }
+    },
 };
 </script>
 

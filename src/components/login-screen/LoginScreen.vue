@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import LoginInput from "./LoginInput";
+import LoginInput from './LoginInput';
 
 export default {
-    components: { LoginInput }
+    components: { LoginInput },
 };
 </script>
 

@@ -8,15 +8,15 @@
 </template>
 
 <script>
-import Sidebar from "./sidebar/Sidebar";
-import Content from "./content/Content";
+import Sidebar from './sidebar/Sidebar';
+import Content from './content/Content';
 
 export default {
     data() {
         return {};
     },
     methods: {},
-    components: { Sidebar, Content }
+    components: { Sidebar, Content },
 };
 </script>
 

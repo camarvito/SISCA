@@ -28,7 +28,7 @@
 export default {
     data() {
         return {
-            isRotating: false
+            isRotating: false,
         };
     },
     computed: {
@@ -40,7 +40,7 @@ export default {
         },
         loadReturn() {
             return this.$store.state.contentHeader.title;
-        }
+        },
     },
     methods: {
         setAnimation() {
@@ -53,13 +53,13 @@ export default {
         clear() {
             // Função que emite o evento para limpar os dados do formulário
             // this.$store.commit('')
-            console.log("implementar");
+            console.log('implementar');
         },
         goBack() {
             /* window.history.back() - Isso bugará o "Active" da Sidebar. */
-            console.log("implementar");
-        }
-    }
+            console.log('implementar');
+        },
+    },
 };
 </script>
 

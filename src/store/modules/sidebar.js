@@ -3,67 +3,67 @@ export default {
     state: {
         sidebarItems: [
             {
-                name: "Home",
-                path: "home",
+                name: 'Home',
+                path: 'home',
                 icon:
                     '<use xlink:href="/img/sprites.752690dd.svg#home-icon-silhouette"></use>',
                 isSelected: true,
-                isClickable: true
+                isClickable: true,
             },
             {
-                name: "Cadastrar cliente",
-                path: "cadastrar-usuario",
+                name: 'Cadastrar cliente',
+                path: 'cadastrar-usuario',
                 icon:
                     '<use xlink:href="/img/sprites.752690dd.svg#new-user"></use>',
                 isSelected: false,
-                isClickable: true
+                isClickable: true,
             },
             {
-                name: "Pagar débitos",
+                name: 'Pagar débitos',
                 icon:
                     '<use xlink:href="/img/sprites.752690dd.svg#give-money"></use>',
                 isSelected: false,
-                isClickable: false
+                isClickable: false,
             },
             {
-                name: "Gerencial",
+                name: 'Gerencial',
                 icon:
                     '<use xlink:href="/img/sprites.752690dd.svg#line-chart"></use>',
                 subItems: [
-                    "Ver devedores",
-                    "Relatório últimos 30 dias",
-                    "Relatório completo"
+                    'Ver devedores',
+                    'Relatório últimos 30 dias',
+                    'Relatório completo',
                 ],
                 isSelected: false,
-                isClickable: true
+                isClickable: true,
             },
             {
-                name: "Logs",
-                path: "login",
+                name: 'Logs',
+                path: 'login',
                 icon:
                     '<use xlink:href="/img/sprites.752690dd.svg#medical-notes-symbol-of-a-list-paper-on-a-clipboard"></use>',
                 isSelected: false,
-                isClickable: false
+                isClickable: false,
             },
             {
-                name: "Configuração",
+                name: 'Configuração',
                 icon:
                     '<use xlink:href="/img/sprites.752690dd.svg#two-settings-cogwheels"></use>',
                 subItems: [
-                    "Preferências de usuário",
-                    "Ajustes de administrador"
+                    'Preferências de usuário',
+                    'Ajustes de administrador',
                 ],
                 isSelected: false,
-                isClickable: false
+                isClickable: false,
             },
             {
-                name: "Suporte",
-                path: "support",
+                name: 'Suporte',
+                path: 'support',
                 icon: '<use xlink:href="/img/sprites.752690dd.svg#help"></use>',
                 isSelected: false,
-                isClickable: true
-            }
-        ]
+                isClickable: true,
+            },
+        ],
     },
     mutations: {
         itemSelected(state, payload) {
@@ -74,7 +74,7 @@ export default {
                     state.sidebarItems[index].isSelected = true;
                 }
             });
-        }
+        },
     },
-    actions: {}
+    actions: {},
 };

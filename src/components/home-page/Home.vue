@@ -30,12 +30,12 @@
 <script>
 export default {
     mounted() {
-        this.$store.commit("contentHeader/changeContentHeader", {
-            title: "Bem-vindo(a)",
+        this.$store.commit('contentHeader/changeContentHeader', {
+            title: 'Bem-vindo(a)',
             loadClear: false,
-            loadReturn: true
+            loadReturn: true,
         });
-    }
+    },
 };
 </script>
 

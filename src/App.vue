@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import Header from "./components/layout/header/Header";
-import Main from "./components/layout/main/Main";
-import LoginScreen from "./components/login-screen/LoginScreen";
+import Header from './components/layout/header/Header';
+import Main from './components/layout/main/Main';
+import LoginScreen from './components/login-screen/LoginScreen';
 
 export default {
-    components: { Header, Main, LoginScreen }
+    components: { Header, Main, LoginScreen },
 };
 </script>
 
@@ -29,7 +29,7 @@ html {
 }
 
 body {
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     line-height: 1.2;
     margin: 0;

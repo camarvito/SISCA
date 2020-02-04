@@ -1,8 +1,16 @@
+// import apollo from '@/plugins/graphql';
+
+const state = {};
+
+const mutations = {};
+
+const actions = {
+  // async fetch
+};
+
 export default {
-    namespaced: true,
-    state: {
-        loadedCostumers: []
-    },
-    mutations: {},
-    actions: {}
+  namespaced: true,
+  state,
+  mutations,
+  actions,
 };

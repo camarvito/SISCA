@@ -11,7 +11,7 @@
 <script>
 export default {
     props: {
-        prices: Array
+        prices: Array,
     },
     data() {
         return {};
@@ -23,8 +23,8 @@ export default {
                 return 0;
             }
             return this.prices.reduce(reducer).toFixed(2);
-        }
-    }
+        },
+    },
 };
 </script>
 

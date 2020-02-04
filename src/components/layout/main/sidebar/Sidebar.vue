@@ -17,20 +17,20 @@
 </template>
 
 <script>
-import SidebarItem from "./SidebarItem";
+import SidebarItem from './SidebarItem';
 
 export default {
     computed: {
         sidebarItems() {
             return this.$store.state.sidebar.sidebarItems;
-        }
+        },
     },
     methods: {
         itemSelected(name) {
-            this.$store.commit("sidebar/itemSelected", name);
-        }
+            this.$store.commit('sidebar/itemSelected', name);
+        },
     },
-    components: { SidebarItem }
+    components: { SidebarItem },
 };
 </script>
 

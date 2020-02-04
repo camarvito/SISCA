@@ -35,17 +35,17 @@
 </template>
 
 <script>
-import TableClientsHeader from "./TableClientsHeader";
-import TableClientsRow from "./TableClientsRow";
-import TableClientsRowErr from "./TableClientsRowErr";
+import TableClientsHeader from './TableClientsHeader';
+import TableClientsRow from './TableClientsRow';
+import TableClientsRowErr from './TableClientsRowErr';
 
 export default {
     components: { TableClientsHeader, TableClientsRow, TableClientsRowErr },
     data() {
         return {
-            inputName: "",
+            inputName: '',
             users: [],
-            filteredUsers: []
+            filteredUsers: [],
         };
     },
     methods: {
@@ -60,20 +60,20 @@ export default {
                         .startsWith(this.inputName.toLowerCase())
                 // }
             );
-        }
+        },
     },
     mounted() {
-        this.$store.commit("contentHeader/changeContentHeader", {
-            title: "Buscar Cliente",
+        this.$store.commit('contentHeader/changeContentHeader', {
+            title: 'Buscar Cliente',
             loadClear: false,
-            loadReturn: true
+            loadReturn: true,
         });
 
         // Resolver esse problema
         this.$store.state.costumers.loadedCostumers.forEach(costumer =>
             this.users.push(costumer)
         );
-    }
+    },
 };
 </script>
 

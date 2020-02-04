@@ -23,27 +23,27 @@
 <script>
 // import gql from 'graphql-tag'
 
-import TableDebitsHeader from "./TableDebitsHeader";
-import TableDebitsRow from "./TableDebitsRow";
-import TableDebitsInput from "./TableDebitsInput";
-import TableDebitsTotal from "./TableDebitsTotal";
+import TableDebitsHeader from './TableDebitsHeader.vue';
+import TableDebitsRow from './TableDebitsRow.vue';
+import TableDebitsInput from './TableDebitsInput.vue';
+import TableDebitsTotal from './TableDebitsTotal.vue';
 
 export default {
     props: {
         debits: {
             type: Array,
-            required: false
-        }
+            required: false,
+        },
     },
     components: {
         TableDebitsHeader,
         TableDebitsRow,
         TableDebitsInput,
-        TableDebitsTotal
+        TableDebitsTotal,
     },
     data() {
         return {
-            userId: this.$route.params.id
+            userId: this.$route.params.id,
         };
     },
     computed: {
@@ -67,10 +67,10 @@ export default {
             });
 
             return prices;
-        }
+        },
     },
     methods: {},
-    mounted() {}
+    mounted() {},
 };
 </script>
 

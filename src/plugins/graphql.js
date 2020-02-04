@@ -1,15 +1,21 @@
-import Vue from "vue";
-import { ApolloClient } from "apollo-client";
-import { createHttpLink } from "apollo-link-http";
-import { setContext } from "apollo-link-context";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import Vue from 'vue';
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+// import { setContext } from 'apollo-link-context';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
+const httpLink = createHttpLink({
+    uri: 'http://localhost:4000/',
+});
+
+const client = new ApolloClient({
+    link: httpLink,
+    cache: new InMemoryCache(),
+});
 
 Vue.use({
     install(Vue) {
         // ApolloLink
-        const httpLink = createHttpLink({
-            uri: "http://localhost:4000/"
-        });
 
         // ApolloLink
         // const authLink = setContext((_, { headers }) => {
@@ -22,9 +28,8 @@ Vue.use({
         //     }
         // })
 
-        Vue.prototype.$api = new ApolloClient({
-            link: httpLink,
-            cache: new InMemoryCache()
-        });
-    }
+        Vue.prototype.$api = client;
+    },
 });
+
+export default client;

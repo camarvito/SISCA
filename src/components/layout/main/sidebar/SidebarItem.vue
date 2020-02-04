@@ -18,7 +18,7 @@
                 v-if="subItems"
                 :class="{
                     'sidebar__item--arrow-active': isActive,
-                    'sidebar__item--arrow': !isActive
+                    'sidebar__item--arrow': !isActive,
                 }"
             >
                 <use
@@ -50,40 +50,40 @@ export default {
     computed: {
         isActive() {
             return this.isSelected;
-        }
+        },
     },
     methods: {
         active() {
             if (!this.isActive) {
-                this.$emit("itemSelected", this.name);
+                this.$emit('itemSelected', this.name);
             }
-        }
+        },
     },
     props: {
         name: {
             type: String,
-            required: true
+            required: true,
         },
         path: {
             type: String,
-            required: false
+            required: false,
         },
         icon: {
             type: String,
-            required: true
+            required: true,
         },
         subItems: {
-            required: true
+            required: true,
         },
         isSelected: {
             type: Boolean,
-            required: false
+            required: false,
         },
         isClickable: {
             type: Boolean,
-            required: true
-        }
-    }
+            required: true,
+        },
+    },
 };
 </script>
 
