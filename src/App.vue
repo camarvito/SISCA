@@ -1,18 +1,18 @@
 <template>
-    <div id="app">
-        <!-- <LoginScreen /> -->
-        <Header />
-        <Main />
-    </div>
+  <div id="app">
+    <!-- <LoginScreen /> -->
+    <Header />
+    <Main />
+  </div>
 </template>
 
 <script>
-import Header from './components/layout/header/Header';
-import Main from './components/layout/main/Main';
-import LoginScreen from './components/login-screen/LoginScreen';
+import Header from './components/layout/header/Header.vue';
+import Main from './components/layout/main/Main.vue';
+// import LoginScreen from './components/login-screen/LoginScreen.vue';
 
 export default {
-    components: { Header, Main, LoginScreen },
+  components: { Header, Main },
 };
 </script>
 
@@ -24,17 +24,17 @@ $color-background: #dfdfdf;
 $color-white: #fff;
 
 html {
-    box-sizing: border-box;
-    font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+  box-sizing: border-box;
+  font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    line-height: 1.2;
-    margin: 0;
-    min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  min-height: 100vh;
 
-    background-color: $color-background;
+  background-color: $color-background;
 }
 </style>
