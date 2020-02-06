@@ -76,15 +76,15 @@ const actions = {
     const { data } = await apollo.mutate({
       mutation: gql`
         mutation(
-          $id: ID!
+          $costumerId: ID!
           $name: String!
           $price: Float!
-          $date: String!
+          $date: Date!
           $isPaid: Boolean!
         ) {
           newDebit(
             data: {
-              costumerId: $id
+              costumerId: $costumerId
               name: $name
               price: $price
               date: $date
@@ -100,7 +100,11 @@ const actions = {
         }
       `,
       variables: {
-        ...payload,
+        costumerId: payload.costumerId,
+        name: payload.name,
+        price: payload.price,
+        date: payload.date,
+        isPaid: payload.isPaid
       },
     });
 

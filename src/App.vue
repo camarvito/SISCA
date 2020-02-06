@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <Login />
-    <!-- <Header />
-    <Main /> -->
+    <!-- <Login /> -->
+    <Header />
+    <Main />
   </div>
 </template>
 
 <script>
-// import Header from './components/layout/header/Header.vue';
-// import Main from './components/layout/main/Main.vue';
-import Login from './views/Login.vue'
+import Header from './components/layout/header/Header.vue';
+import Main from './components/layout/main/Main.vue';
+// import Login from './views/Login.vue'
 
 export default {
-  components: { Login }, // Header, Main
+  components: { Header, Main },
 };
 </script>
 

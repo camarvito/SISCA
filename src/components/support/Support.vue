@@ -10,6 +10,13 @@
             </div>
             <div class="support__photos--frame">
                 <img
+                    class="support__photos--frame--picture"
+                    src="@/assets/img/ellyo.png"
+                    alt="picture"
+                />
+            </div>
+            <div class="support__photos--frame">
+                <img
                     class="support__photos--frame--picture--2"
                     src="@/assets/img/logo-inove-dev.png"
                     alt="picture"
@@ -25,12 +32,12 @@
                 projeto da célula de desenvolvimento de software do INOVE, que
                 tem como propósito auxiliar atividades de contabilidade do
                 estabelecimento. Desenvolvido inicialmente por Victor Camargo
-                (Vito), aluno de Ciência da Computação, sobre coordenação de
+                (Vito) e Francisco Ellyo, alunos de Ciência da Computação e Sistemas de Informação, respectivamente, sobre coordenação de
                 Roberta Dutra e Simone Nunes.
             </div>
             <div class="support__text--paragraph">
                 Contato:<br />
-                <br />vito@alu.ufc.br <br />projetos@quixada.ufc.br
+                <br />vito@alu.ufc.br <br />emaildoellyo@alu.ufc.br<br />projetos@quixada.ufc.br
             </div>
         </div>
     </div>

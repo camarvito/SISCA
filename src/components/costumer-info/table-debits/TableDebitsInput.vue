@@ -41,9 +41,10 @@ export default {
   methods: {
     ...costumerDebitsActions(['storeDebit']),
     currentDate() {
-      const nowDate = Date(Date.now()).toString();
-      const dateRegExp = /\w{3}\s\d{2}\s\d{4}\s\d{2}:\d{2}:\d{2}/i;
-      return nowDate.match(dateRegExp);
+      // const nowDate = Date(Date.now()).toString();
+      // const dateRegExp = /\w{3}\s\d{2}\s\d{4}\s\d{2}:\d{2}:\d{2}/i;
+      // return nowDate.match(dateRegExp);
+      return Date(Date.now())
     },
     async send() {
       const debitNameRegex = /\w+/i;
@@ -58,15 +59,15 @@ export default {
         const { id } = this.$route.params;
 
         const debit = {
-          id,
+          costumerId: id,
           name: this.name,
           price: parseFloat(this.price.match(debitPriceRegex)[0]),
-          date: this.currentDate()[0],
+          date: this.currentDate(),
           isPaid: false,
         };
 
         this.storeDebit(debit);
-        // console.log(debit);
+        console.log(debit);
 
         // this.storeDebit({})
       } else {
