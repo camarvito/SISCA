@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <!-- <LoginScreen /> -->
-    <Header />
-    <Main />
+    <Login />
+    <!-- <Header />
+    <Main /> -->
   </div>
 </template>
 
 <script>
-import Header from './components/layout/header/Header.vue';
-import Main from './components/layout/main/Main.vue';
-// import LoginScreen from './components/login-screen/LoginScreen.vue';
+// import Header from './components/layout/header/Header.vue';
+// import Main from './components/layout/main/Main.vue';
+import Login from './views/Login.vue'
 
 export default {
-  components: { Header, Main },
+  components: { Login }, // Header, Main
 };
 </script>
 

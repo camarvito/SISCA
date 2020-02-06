@@ -86,7 +86,7 @@ export default {
                     },
                 })
                 .then(resultado => {
-                    // console.log(resultado)
+                    console.log(resultado)
                 })
                 .catch(e => console.log(e));
         },

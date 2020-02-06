@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import SidebarItem from './SidebarItem';
+import SidebarItem from './SidebarItem.vue';
 
 export default {
     computed: {

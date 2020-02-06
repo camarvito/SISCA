@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import TableClients from '../components/costumer-table/TableClients';
-import RegisterCostumerForm from '../components/costumer-register-form/RegisterCostumerForm';
-import Costumer from '../components/costumer-info/Costumer';
-import Support from '../components/support/Support';
-import LoginScreen from '../components/login-screen/LoginScreen';
-import Home from '../components/home-page/Home';
+import TableClients from '../components/costumer-table/TableClients.vue';
+import RegisterCostumerForm from '../components/costumer-register-form/RegisterCostumerForm.vue';
+import Costumer from '../components/costumer-info/Costumer.vue';
+import Support from '../components/support/Support.vue';
+import Login from '../views/Login.vue';
+import Home from '../components/home-page/Home.vue';
 
 Vue.use(VueRouter);
 
@@ -36,7 +36,7 @@ const routes = [
     },
     {
         path: '/login',
-        component: LoginScreen,
+        component: Login,
     },
 ];
 
