@@ -2,12 +2,8 @@
     <div class="container">
         <LoginInput />
         <div class="login__partners">
-            <!-- <div> -->
                 <img class="login__partners--img--1" src="@/assets/img/ufc-qxd.png" alt="ufc-quixada-logo">
-            <!-- </div> -->
-            <!-- <div> -->
                 <img class="login__partners--img--2" src="@/assets/img/logo-inove-dev.png" alt="inove-dev-logo">
-            <!-- </div> -->
         </div>
     </div>
 </template>
