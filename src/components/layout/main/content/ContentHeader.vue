@@ -3,7 +3,7 @@
     <div class="content__header--title">{{ title }}</div>
     <div class="content__header--options">
       <svg
-        v-if="false"
+        v-if="clear"
         class="content__header--options--icon"
         @click="
           setAnimation();
@@ -14,7 +14,7 @@
         <use xlink:href="@/assets/sprites.svg#refresh-button"></use>
       </svg>
       <svg
-        v-if="false"
+        v-if="goBack"
         class="content__header--options--icon"
         @click="$router.go(-1)"
       >
@@ -34,7 +34,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['title']),
+    ...mapState(['title', 'clear', 'goBack']),
     // title() {
     //   return this.$store.state.contentHeader.title;
     // },
@@ -53,7 +53,7 @@ export default {
         this.isRotating = false;
       }, 1000);
     },
-    clear() {
+    clearForm() {
       // Função que emite o evento para limpar os dados do formulário
       // this.$store.commit('')
       console.log('implementar');

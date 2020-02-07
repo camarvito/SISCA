@@ -13,13 +13,13 @@ export default new Vuex.Store({
   state: {
     title: 'Buscar cliente',
     clear: false,
-    return: true,
+    goBack: true
   },
   mutations: {
     changeContentHeader(state, payload) {
-      (state.title = payload.title),
+        (state.title = payload.title),
         (state.clear = payload.loadClear),
-        (state.return = payload.loadReturn);
+        (state.goBack = payload.loadReturn);
     },
   },
   actions: {},
