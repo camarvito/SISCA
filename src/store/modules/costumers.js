@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import router from '@/router';
 import apollo from '@/plugins/graphql';
 
 const state = {
@@ -12,6 +13,9 @@ const mutations = {
   },
   SET_SEARCH_KEY(state, payload) {
     state.searchKey = payload;
+  },
+  SET_NEW_COSTUMER(state, payload) {
+    state.costumers.push(payload);
   },
 };
 
@@ -34,6 +38,46 @@ const actions = {
     });
 
     commit('SET_COSTUMERS', data.costumers);
+  },
+
+  async storeCostumer({ commit }, payload) {
+    const { data } = await apollo.mutate({
+      mutation: gql`
+        mutation(
+          $name: String!
+          $cpf: String!
+          $phone: String!
+          $type: String!
+          $registry: String
+          $course: String
+        ) {
+          newCostumer(
+            data: {
+              name: $name
+              cpf: $cpf
+              phone: $phone
+              type: $type
+              registry: $registry
+              course: $course
+            }
+          ) {
+            id
+            name
+            cpf
+            phone
+            type
+            registry
+            course
+          }
+        }
+      `,
+      variables: {
+        ...payload,
+      },
+    });
+
+    commit('SET_NEW_COSTUMER', data.newCostumer);
+    router.push({ name: 'busca-cliente' });
   },
 };
 

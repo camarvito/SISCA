@@ -58,10 +58,10 @@ export default {
       // this.$store.commit('')
       console.log('implementar');
     },
-    goBack() {
-      /* window.history.back() - Isso bugará o "Active" da Sidebar. */
-      console.log('implementar');
-    },
+    // goBack() {
+    //   /* window.history.back() - Isso bugará o "Active" da Sidebar. */
+    //   console.log('implementar');
+    // },
   },
 };
 </script>

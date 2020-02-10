@@ -10,39 +10,41 @@ import Home from '../components/home-page/Home.vue';
 Vue.use(VueRouter);
 
 const routes = [
-    {
-        path: '*', // Redireciona todas as rotas não listadas aqui para a home.
-        redirect: '/home',
-    },
-    {
-        path: '/home',
-        component: Home,
-    },
-    {
-        path: '/busca-cliente',
-        component: TableClients,
-    },
-    {
-        path: '/cadastrar-usuario',
-        component: RegisterCostumerForm,
-    },
-    {
-        path: '/costumers/:id',
-        component: Costumer,
-    },
-    {
-        path: '/support',
-        component: Support,
-    },
-    {
-        path: '/login',
-        component: Login,
-    },
+  {
+    path: '*', // Redireciona todas as rotas não listadas aqui para a home.
+    redirect: '/home',
+  },
+  {
+    path: '/home',
+    component: Home,
+  },
+  {
+    name: 'busca-cliente',
+    path: '/busca-cliente',
+    component: TableClients,
+  },
+  {
+    path: '/cadastrar-usuario',
+    component: RegisterCostumerForm,
+  },
+  {
+    name: 'costumers',
+    path: '/costumers/:id',
+    component: Costumer,
+  },
+  {
+    path: '/support',
+    component: Support,
+  },
+  {
+    path: '/login',
+    component: Login,
+  },
 ];
 
 const router = new VueRouter({
-    mode: 'history',
-    routes,
+  mode: 'history',
+  routes,
 });
 
 export default router;

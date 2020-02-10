@@ -148,9 +148,9 @@
 </template>
 
 <script>
-import gql from 'graphql-tag';
+import { createNamespacedHelpers } from 'vuex';
 
-// import { TheMask } from 'vue-the-mask';
+const { mapActions: costumersActions } = createNamespacedHelpers('costumers');
 
 export default {
   // components: { TheMask },
@@ -188,6 +188,7 @@ export default {
     };
   },
   methods: {
+    ...costumersActions(['storeCostumer']),
     checkForm(attr) {
       if (attr === this.user.name) {
         const nameRegex = /\w+\s\w+/i;
@@ -242,67 +243,17 @@ export default {
         ],
       };
     },
-    send() {
-      const newUser = {
+    async send() {
+      await this.storeCostumer({
         name: this.user.name,
         cpf: this.user.cpf,
         phone: this.user.phone,
         type: this.user.type,
         registry: this.user.registry,
         course: this.user.course,
-      };
-
-      console.log(newUser);
-
-      this.$api
-        .mutate({
-          mutation: gql`
-            mutation(
-              $name: String!
-              $cpf: String!
-              $phone: String!
-              $type: String!
-              $registry: String
-              $course: String
-            ) {
-              newCostumer(
-                data: {
-                  name: $name
-                  cpf: $cpf
-                  phone: $phone
-                  type: $type
-                  registry: $registry
-                  course: $course
-                }
-              ) {
-                id
-                name
-                cpf
-                phone
-                type
-                registry
-                course
-              }
-            }
-          `,
-          variables: {
-            name: newUser.name,
-            cpf: newUser.cpf,
-            phone: newUser.phone,
-            type: newUser.type,
-            registry: newUser.registry,
-            course: newUser.course,
-          },
-        })
-        .then(resultado => {
-          console.log(resultado);
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      });
     },
   },
-  watch: {},
   mounted() {
     this.$store.commit('changeContentHeader', {
       title: 'Cadastrar Cliente',
