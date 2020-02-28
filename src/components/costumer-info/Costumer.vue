@@ -71,15 +71,9 @@ export default {
   methods: {
     ...costumerDebitsActions(['fetchDebits']),
   },
-  mounted() {
+  created() {
     const { id } = this.$route.params;
     this.fetchDebits(id);
-
-    this.$store.commit('changeContentHeader', {
-      title: 'Dados do Cliente',
-      loadClear: false,
-      loadReturn: true,
-    });
   },
 };
 </script>

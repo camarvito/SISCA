@@ -31,18 +31,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  mounted() {
-    this.$store.commit('changeContentHeader', {
-      title: 'Bem-vindo(a)',
-      loadClear: false,
-      loadReturn: true,
-    });
-  },
-};
-</script>
-
 <style lang="scss">
 .home {
   display: grid;

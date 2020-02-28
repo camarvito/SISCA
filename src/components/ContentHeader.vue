@@ -14,11 +14,14 @@
         <use xlink:href="@/assets/sprites.svg#refresh-button"></use>
       </svg>
       <svg
-        v-if="true"
+        :style="{ cursor: goBack ? 'pointer' : 'default' }"
         class="content__header--options--icon"
         @click="$router.go(-1)"
       >
-        <use xlink:href="@/assets/sprites.svg#back-arrow"></use>
+        <use
+          :style="{ display: goBack ? 'block' : 'none' }"
+          xlink:href="@/assets/sprites.svg#back-arrow"
+        ></use>
       </svg>
     </div>
   </div>
@@ -34,16 +37,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(['title', 'clear', 'goBack']),
-    // title() {
-    //   return this.$store.state.contentHeader.title;
-    // },
-    // loadClear() {
-    //   return this.$store.state.contentHeader.clear;
-    // },
-    // loadReturn() {
-    //   return this.$store.state.contentHeader.title;
-    // },
+    ...mapState(['title']),
+    goBack() {
+      return this.$route.name !== 'home' && true;
+    },
   },
   methods: {
     setAnimation() {

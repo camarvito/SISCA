@@ -15,13 +15,7 @@ export default new Vuex.Store({
     clear: false,
     goBack: true,
   },
-  mutations: {
-    changeContentHeader(state, payload) {
-      (state.title = payload.title),
-        (state.clear = payload.loadClear),
-        (state.goBack = payload.loadReturn);
-    },
-  },
+  mutations: {},
   actions: {},
   modules: {
     costumers,

@@ -255,13 +255,6 @@ export default {
       });
     },
   },
-  mounted() {
-    this.$store.commit('changeContentHeader', {
-      title: 'Cadastrar Cliente',
-      loadClear: true,
-      loadReturn: true,
-    });
-  },
 };
 </script>
 
