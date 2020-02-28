@@ -7,16 +7,6 @@
   </div>
 </template>
 
-<script>
-// import Header from './components/layout/header/Header.vue';
-// import Main from './components/layout/main/Main.vue';
-// import Login from './views/Login.vue'
-
-// export default {
-//   components: { Header, Main },
-// };
-</script>
-
 <style lang="scss">
 /* Colors */
 $color-blue: #2980b9;

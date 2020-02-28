@@ -17,6 +17,9 @@ const mutations = {
   SET_NEW_COSTUMER(state, payload) {
     state.costumers.push(payload);
   },
+  REMOVE_COSUTMER(state, payload) {
+    state.costumers = state.costumers.filter(c => c.id !== payload.id);
+  },
 };
 
 const actions = {
@@ -79,16 +82,33 @@ const actions = {
     commit('SET_NEW_COSTUMER', data.newCostumer);
     router.push({ name: 'busca-cliente' });
   },
+
+  async deleteCostumer({ commit }, payload) {
+    const { data } = await apollo.mutate({
+      mutation: gql`
+        mutation($id: ID!) {
+          deleteCostumer(filter: { id: $id }) {
+            id
+            name
+            cpf
+            phone
+            type
+          }
+        }
+      `,
+      variables: {
+        id: payload,
+      },
+    });
+
+    commit('REMOVE_COSUTMER', data.deleteCostumer);
+  },
 };
 
 const getters = {
   filteredUsers(state) {
-    return state.costumers.filter(
-      user => user.name.toLowerCase().startsWith(state.searchKey.toLowerCase())
-      // if (!this.inputName) {
-      //     return false
-      // } else {
-      // }
+    return state.costumers.filter(user =>
+      user.name.toLowerCase().startsWith(state.searchKey.toLowerCase())
     );
   },
 };

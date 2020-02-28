@@ -17,7 +17,7 @@
 import Header from '@/components/Header.vue';
 import Sidebar from '@/components/sidebar/Sidebar.vue';
 
-import ContentHeader from '@/components/content/ContentHeader.vue';
+import ContentHeader from '@/components/ContentHeader.vue';
 
 export default {
   name: 'Dashboard',

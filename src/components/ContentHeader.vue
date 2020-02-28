@@ -26,7 +26,6 @@
 
 <script>
 import { mapState } from 'vuex';
-import history from 'history';
 
 export default {
   data() {
@@ -66,7 +65,6 @@ export default {
     // },
   },
   created() {
-    console.log(history);
     // console.log(window.location);
   },
 };

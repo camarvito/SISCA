@@ -27,7 +27,7 @@
         </button>
       </td>
       <td class="table__body--cell">
-        <button class="btn btn--exclude" @click="deleteCostumer">
+        <button class="btn btn--exclude" @click.prevent="handleDelete">
           <svg class="btn--icon">
             <use xlink:href="@/assets/sprites.svg#bin"></use>
           </svg>
@@ -43,7 +43,9 @@
 </template>
 
 <script>
-import gql from 'graphql-tag';
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapActions: costumersActions } = createNamespacedHelpers('costumers');
 
 export default {
   props: {
@@ -64,29 +66,12 @@ export default {
     },
   },
   methods: {
-    deleteCostumer() {
-      console.log(this.id);
-      this.$api
-        .mutate({
-          mutation: gql`
-            mutation($id: ID!) {
-              deleteCostumer(filter: { id: $id }) {
-                id
-                name
-                cpf
-                phone
-                type
-              }
-            }
-          `,
-          variables: {
-            id: this.id,
-          },
-        })
-        .then(resultado => {
-          console.log(resultado);
-        })
-        .catch(e => console.log(e));
+    ...costumersActions(['deleteCostumer']),
+    handleDelete() {
+      const confirm = window.confirm('Deseja apagar esse usuário?');
+      if (confirm) {
+        this.deleteCostumer(this.id);
+      }
     },
   },
 };
