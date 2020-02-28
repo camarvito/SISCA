@@ -1,6 +1,6 @@
 <template>
   <div class="content__header">
-    <div class="content__header--title">{{ title }}</div>
+    <div class="content__header--title">{{ $route.meta.title }}</div>
     <div class="content__header--options">
       <svg
         v-if="false"
@@ -48,6 +48,7 @@ export default {
   },
   methods: {
     setAnimation() {
+      // this.$route.meta.
       /* Como não conseguir animar o click usando apenas o CSS programei uma função simples */
       this.isRotating = true;
       setTimeout(() => {
