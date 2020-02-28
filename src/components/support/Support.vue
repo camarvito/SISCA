@@ -32,7 +32,7 @@
                 projeto da célula de desenvolvimento de software do INOVE, que
                 tem como propósito auxiliar atividades de contabilidade do
                 estabelecimento. Desenvolvido inicialmente por Victor Camargo
-                (Vito) e Francisco Ellyo, alunos de Ciência da Computação e Sistemas de Informação, respectivamente, sobre coordenação de
+                (Vito) e Francisco Ellyo, alunos de Ciência da Computação e Sistemas de Informação, respectivamente. O projeto foi dirigido sobre coordenação de
                 Roberta Dutra e Simone Nunes.
             </div>
             <div class="support__text--paragraph">
@@ -46,12 +46,12 @@
 <script>
 export default {
     mounted() {
-        this.$store.commit('contentHeader/changeContentHeader', {
+        this.$store.commit('changeContentHeader', {
             title: 'Sobre',
             loadClear: false,
             loadReturn: true,
         });
-    },
+    }
 };
 </script>
 

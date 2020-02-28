@@ -2,47 +2,43 @@
   <div class="costumer__container">
     <!-- <div class="costumer__photo">
           <div class="costumer__photo--img"></div>
-      </div> -->
+    </div>-->
     <div class="costumer__info">
       <div class="costumer__info--name">{{ costumer.name }}</div>
       <div class="costumer__info--box--container">
         <div class="costumer__info--box--container--left">
           <div class="costumer__info--personal">
-            <strong>CPF: </strong>
+            <strong>CPF:</strong>
           </div>
           <div class="costumer__info--personal">
-            <strong>Telefone: </strong>
+            <strong>Telefone:</strong>
           </div>
           <div class="costumer__info--personal">
-            <strong>Matricula: </strong>
+            <strong>Matricula:</strong>
           </div>
           <div class="costumer__info--personal">
-            <strong>Curso: </strong>
+            <strong>Curso:</strong>
           </div>
           <div class="costumer__info--personal">
-            <strong>Situação: </strong>
+            <strong>Situação:</strong>
           </div>
         </div>
 
         <div class="costumer__info--box--container--right">
+          <div class="costumer__info--personal">{{ costumer.cpf }}</div>
+          <div class="costumer__info--personal">{{ costumer.phone }}</div>
           <div class="costumer__info--personal">
-            {{ costumer.cpf }}
+            <span v-if="costumer.registry">{{ costumer.registry }}</span>
+            <span v-else>-------</span>
           </div>
           <div class="costumer__info--personal">
-            {{ costumer.phone }}
-          </div>
-          <div class="costumer__info--personal">
-            <span v-if="costumer.registry"> {{ costumer.registry }} </span
-            ><span v-else>-------</span>
-          </div>
-          <div class="costumer__info--personal">
-            <span v-if="costumer.course"> {{ costumer.course }} </span
-            ><span v-else>-------</span>
+            <span v-if="costumer.course">{{ costumer.course }}</span>
+            <span v-else>-------</span>
           </div>
           <div class="costumer__info--personal">
             <!--Corrigir isso-->
-            <span v-if="costumer.debits"> Há dividas pendentes </span
-            ><span v-else>Não há dividas pendentes</span>
+            <span v-if="costumer.debits">Há dividas pendentes</span>
+            <span v-else>Não há dividas pendentes</span>
           </div>
         </div>
       </div>
