@@ -1,4 +1,47 @@
 <template>
+<<<<<<< HEAD
+    <div class="support">
+        <div class="support__photos">
+            <div class="support__photos--frame">
+                <img
+                    class="support__photos--frame--picture"
+                    src="@/assets/img/vito.png"
+                    alt="picture"
+                />
+            </div>
+            <div class="support__photos--frame">
+                <img
+                    class="support__photos--frame--picture"
+                    src="@/assets/img/ellyo.png"
+                    alt="picture"
+                />
+            </div>
+            <div class="support__photos--frame">
+                <img
+                    class="support__photos--frame--picture--2"
+                    src="@/assets/img/logo-inove-dev.png"
+                    alt="picture"
+                />
+            </div>
+        </div>
+        <div class="support__text">
+            <div class="support__text--paragraph center">
+                <strong>SISCA v0.1.1 Beta</strong>
+            </div>
+            <div class="support__text--paragraph">
+                O <strong>Sis</strong>tema da <strong>Ca</strong>ntina é um
+                projeto da célula de desenvolvimento de software do INOVE, que
+                tem como propósito auxiliar atividades de contabilidade do
+                estabelecimento. Desenvolvido inicialmente por Victor Camargo
+                (Vito) e Francisco Ellyo, alunos de Ciência da Computação e Sistemas de Informação, respectivamente. O projeto foi dirigido sobre coordenação de
+                Roberta Dutra e Simone Nunes.
+            </div>
+            <div class="support__text--paragraph">
+                Contato:<br />
+                <br />vito@alu.ufc.br <br />emaildoellyo@alu.ufc.br<br />projetos@quixada.ufc.br
+            </div>
+        </div>
+=======
   <div class="support">
     <div class="support__photos">
       <div class="support__photos--frame">
@@ -22,6 +65,7 @@
           alt="picture"
         />
       </div>
+>>>>>>> fcf14e0cb08992528a8e701d042a8d088ce0552a
     </div>
     <div class="support__text">
       <div class="support__text--paragraph center">
@@ -44,6 +88,21 @@
   </div>
 </template>
 
+<<<<<<< HEAD
+<script>
+export default {
+    mounted() {
+        this.$store.commit('changeContentHeader', {
+            title: 'Sobre',
+            loadClear: false,
+            loadReturn: true,
+        });
+    }
+};
+</script>
+
+=======
+>>>>>>> fcf14e0cb08992528a8e701d042a8d088ce0552a
 <style lang="scss">
 .support {
   display: grid;

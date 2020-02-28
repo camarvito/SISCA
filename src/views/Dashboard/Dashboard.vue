@@ -5,6 +5,7 @@
       <Sidebar @itemSelected="itemSelected($event)" />
       <div class="content">
         <ContentHeader />
+        <Alert v-show="isAlertVisible" />
         <transition name="slide" mode="out-in">
           <router-view />
         </transition>
@@ -16,6 +17,7 @@
 <script>
 import Header from '@/components/Header.vue';
 import Sidebar from '@/components/sidebar/Sidebar.vue';
+import Alert from '@/components/alert-popup/Alert.vue';
 
 import ContentHeader from '@/components/ContentHeader.vue';
 
@@ -25,6 +27,12 @@ export default {
     Header,
     Sidebar,
     ContentHeader,
+    Alert,
+  },
+  computed: {
+    isAlertVisible() {
+      return this.$store.state.alert.isAlertVisible;
+    },
   },
 };
 </script>

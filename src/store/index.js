@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import costumers from './modules/costumers';
 import costumerDebits from './modules/costumerDebits';
 import sidebar from './modules/sidebar';
+import alert from './modules/alert';
 // import contentHeader from './modules/contentHeader';
 import tableDebits from './modules/tableDebits';
 
@@ -23,5 +24,6 @@ export default new Vuex.Store({
     sidebar,
     // contentHeader,
     tableDebits,
+    alert,
   },
 });

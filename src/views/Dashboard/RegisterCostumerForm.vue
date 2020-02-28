@@ -10,8 +10,7 @@
             'input__correct--text': user.isNameValid,
             'input__wrong--text': user.isNameInitialized,
           }"
-          >Nome Completo</label
-        >
+        >Nome Completo</label>
         <input
           type="text"
           placeholder="Ex. Victor Camargo Oliveira"
@@ -35,8 +34,7 @@
             'input__correct--text': user.isCpfValid,
             'input__wrong--text': user.isCpfInitialized,
           }"
-          >CPF</label
-        >
+        >CPF</label>
         <input
           type="text"
           placeholder="123.456.789-00"
@@ -61,8 +59,7 @@
             'input__correct--text': user.isPhoneValid,
             'input__wrong--text': user.isPhoneInitialized,
           }"
-          >Telefone para contato</label
-        >
+        >Telefone para contato</label>
         <input
           type="text"
           placeholder="(88) 00000-0000"
@@ -82,19 +79,11 @@
       <div class="content__form__input-container--item input--1-of-4">
         <label for="name-input" class="input__text--label">Tipo</label>
         <select class="input__drop-down" v-model="user.type">
-          <option
-            v-for="type in user.types"
-            :key="type.code"
-            :value="type.name"
-            >{{ type.name }}</option
-          >
+          <option v-for="type in user.types" :key="type.code" :value="type.name">{{ type.name }}</option>
         </select>
       </div>
 
-      <div
-        v-if="user.type === 'Aluno'"
-        class="content__form__input-container--item input--1-of-4"
-      >
+      <div v-if="user.type === 'Aluno'" class="content__form__input-container--item input--1-of-4">
         <label
           for="name-input"
           class="input__text--label"
@@ -102,8 +91,7 @@
             'input__correct--text': user.isRegistryValid,
             'input__wrong--text': user.isRegistryInitialized,
           }"
-          >Matricula</label
-        >
+        >Matricula</label>
         <input
           type="text"
           placeholder="123456"
@@ -120,28 +108,19 @@
         />
       </div>
 
-      <div
-        v-if="user.type === 'Aluno'"
-        class="content__form__input-container--item input--1-of-4"
-      >
+      <div v-if="user.type === 'Aluno'" class="content__form__input-container--item input--1-of-4">
         <label for="name-input" class="input__text--label">Curso</label>
         <select class="input__drop-down" v-model="user.course">
           <option
             v-for="course in user.courses"
             :key="course.code"
             :value="course.name"
-            >{{ course.name }}</option
-          >
+          >{{ course.name }}</option>
         </select>
       </div>
 
       <div class="content__form__input-container--item input--4-of-4">
-        <input
-          type="button"
-          class="input__big-button"
-          value="Confirmar cadastro"
-          @click="send"
-        />
+        <input type="button" class="input__big-button" value="Confirmar cadastro" @click="send" />
       </div>
     </div>
   </div>
@@ -151,6 +130,7 @@
 import { createNamespacedHelpers } from 'vuex';
 
 const { mapActions: costumersActions } = createNamespacedHelpers('costumers');
+const { mapMutations: alertMutations } = createNamespacedHelpers('alert');
 
 export default {
   name: 'DashboardRegisterCostumerForm',
@@ -190,6 +170,7 @@ export default {
   },
   methods: {
     ...costumersActions(['storeCostumer']),
+    ...alertMutations(['showAlert']),
     checkForm(attr) {
       if (attr === this.user.name) {
         const nameRegex = /\w+\s\w+/i;
@@ -245,14 +226,19 @@ export default {
       };
     },
     async send() {
-      await this.storeCostumer({
-        name: this.user.name,
-        cpf: this.user.cpf,
-        phone: this.user.phone,
-        type: this.user.type,
-        registry: this.user.registry,
-        course: this.user.course,
-      });
+      try {
+        await this.storeCostumer({
+          name: this.user.name,
+          cpf: this.user.cpf,
+          phone: this.user.phone,
+          type: this.user.type,
+          registry: this.user.registry,
+          course: this.user.course,
+        });
+        this.showAlert();
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
 };
