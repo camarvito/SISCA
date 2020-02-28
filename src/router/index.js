@@ -32,17 +32,16 @@ const routes = [
         path: 'cadastrar-usuario',
         component: RegisterCostumerForm,
       },
+      {
+        name: 'costumers',
+        path: '/costumers/:id',
+        component: Costumer,
+      },
+      {
+        path: '/support',
+        component: Support,
+      },
     ],
-  },
-
-  {
-    name: 'costumers',
-    path: '/costumers/:id',
-    component: Costumer,
-  },
-  {
-    path: '/support',
-    component: Support,
   },
   {
     path: '/login',
