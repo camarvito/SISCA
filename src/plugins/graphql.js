@@ -5,31 +5,31 @@ import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const httpLink = createHttpLink({
-    uri: 'http://localhost:4000/',
+  uri: process.env.VUE_APP_GRAPHQL_URL,
 });
 
 const client = new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache(),
+  link: httpLink,
+  cache: new InMemoryCache(),
 });
 
 Vue.use({
-    install(Vue) {
-        // ApolloLink
+  install(Vue) {
+    // ApolloLink
 
-        // ApolloLink
-        // const authLink = setContext((_, { headers }) => {
-        //     const token = localStorage.getItem('token')
-        //     return {
-        //         headers: {
-        //             ...headers,
-        //             authorization: token ? `Bearer ${token}` : ''
-        //         }
-        //     }
-        // })
+    // ApolloLink
+    // const authLink = setContext((_, { headers }) => {
+    //     const token = localStorage.getItem('token')
+    //     return {
+    //         headers: {
+    //             ...headers,
+    //             authorization: token ? `Bearer ${token}` : ''
+    //         }
+    //     }
+    // })
 
-        Vue.prototype.$api = client;
-    },
+    Vue.prototype.$api = client;
+  },
 });
 
 export default client;

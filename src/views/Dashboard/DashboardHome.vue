@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <router-link tag="div" to="/busca-cliente" class="home__button search">
+    <router-link
+      tag="div"
+      :to="{ name: 'busca-cliente' }"
+      class="home__button search"
+    >
       <svg class="home__button--icon">
         <use xlink:href="@/assets/sprites.svg#magnifying-glass"></use>
       </svg>

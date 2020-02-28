@@ -104,7 +104,7 @@ const actions = {
         name: payload.name,
         price: payload.price,
         date: payload.date,
-        isPaid: payload.isPaid
+        isPaid: payload.isPaid,
       },
     });
 
@@ -134,7 +134,9 @@ const actions = {
 
 const getters = {
   accountTotal(state) {
-    return state.debits.reduce((total, debit) => total + debit.price, 0);
+    return state.debits.reduce((total, debit) => {
+      return !debit.isPaid ? total + debit.price : total;
+    }, 0);
   },
 };
 

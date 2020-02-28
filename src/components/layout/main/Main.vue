@@ -1,8 +1,6 @@
 <template>
   <main class="main__layout">
-    <Sidebar
-      @itemSelected="itemSelected($event)"
-    /><!--:sidebarItems="sidebarItems"-->
+    <!--:sidebarItems="sidebarItems"-->
     <Content />
   </main>
 </template>

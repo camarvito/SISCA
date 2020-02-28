@@ -3,7 +3,7 @@
     <div class="content__header--title">{{ title }}</div>
     <div class="content__header--options">
       <svg
-        v-if="clear"
+        v-if="false"
         class="content__header--options--icon"
         @click="
           setAnimation();
@@ -14,7 +14,7 @@
         <use xlink:href="@/assets/sprites.svg#refresh-button"></use>
       </svg>
       <svg
-        v-if="goBack"
+        v-if="true"
         class="content__header--options--icon"
         @click="$router.go(-1)"
       >
@@ -26,6 +26,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import history from 'history';
 
 export default {
   data() {
@@ -62,6 +63,10 @@ export default {
     //   /* window.history.back() - Isso bugará o "Active" da Sidebar. */
     //   console.log('implementar');
     // },
+  },
+  created() {
+    console.log(history);
+    // console.log(window.location);
   },
 };
 </script>

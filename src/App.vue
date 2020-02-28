@@ -1,19 +1,20 @@
 <template>
   <div id="app">
+    <router-view />
     <!-- <Login /> -->
-    <Header />
-    <Main />
+    <!-- <Header />
+    <Main /> -->
   </div>
 </template>
 
 <script>
-import Header from './components/layout/header/Header.vue';
-import Main from './components/layout/main/Main.vue';
+// import Header from './components/layout/header/Header.vue';
+// import Main from './components/layout/main/Main.vue';
 // import Login from './views/Login.vue'
 
-export default {
-  components: { Header, Main },
-};
+// export default {
+//   components: { Header, Main },
+// };
 </script>
 
 <style lang="scss">
