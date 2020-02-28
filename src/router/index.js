@@ -1,11 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '@/views/Dashboard/DashboardHome.vue';
-import TableClients from '../components/costumer-table/TableClients.vue';
-import RegisterCostumerForm from '../components/costumer-register-form/RegisterCostumerForm.vue';
-import Costumer from '../components/costumer-info/Costumer.vue';
-import Support from '../components/support/Support.vue';
-import Login from '../views/Login.vue';
 
 Vue.use(VueRouter);
 
@@ -21,7 +15,7 @@ const routes = [
       {
         name: 'home',
         path: '',
-        component: Home,
+        component: () => import('@/views/Dashboard/Home.vue'),
         meta: {
           title: 'Bem-vindo(a)',
         },
@@ -29,7 +23,7 @@ const routes = [
       {
         name: 'busca-cliente',
         path: 'busca-cliente',
-        component: TableClients,
+        component: () => import('@/components/costumer-table/TableClients.vue'),
         meta: {
           title: 'Buscar cliente',
         },
@@ -37,7 +31,7 @@ const routes = [
       {
         name: 'cadastrar-usuario',
         path: 'cadastrar-usuario',
-        component: RegisterCostumerForm,
+        component: () => import('@/views/Dashboard/RegisterCostumerForm.vue'),
         meta: {
           title: 'Cadastrar usuário',
         },
@@ -45,7 +39,7 @@ const routes = [
       {
         name: 'costumers',
         path: 'costumers/:id',
-        component: Costumer,
+        component: () => import('@/components/costumer-info/Costumer.vue'),
         meta: {
           title: 'Dados do cliente',
         },
@@ -53,7 +47,7 @@ const routes = [
       {
         name: 'support',
         path: 'support',
-        component: Support,
+        component: () => import('@/views/Dashboard/Support.vue'),
         meta: {
           title: 'Sobre',
         },
@@ -63,7 +57,7 @@ const routes = [
   {
     name: 'login',
     path: '/login',
-    component: Login,
+    component: () => import('@/views/Login.vue'),
   },
 ];
 

@@ -153,6 +153,7 @@ import { createNamespacedHelpers } from 'vuex';
 const { mapActions: costumersActions } = createNamespacedHelpers('costumers');
 
 export default {
+  name: 'DashboardRegisterCostumerForm',
   // components: { TheMask },
   data() {
     return {
