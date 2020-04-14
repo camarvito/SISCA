@@ -9,11 +9,13 @@ export default {};
 <style lang="scss">
 .popup {
   background-color: #2ecc71;
+  color: #fff;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
+  font-weight: bold;
   height: 5rem;
   width: 20rem;
   position: fixed;
